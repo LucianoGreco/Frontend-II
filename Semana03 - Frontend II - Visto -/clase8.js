@@ -98,13 +98,57 @@ Vamos a seguir las indicaciones que nos permiten lograrlo utilizando eventos.
 
     */
 
-
+    /*
+    Nevermind
+    Thriller
+    The wall
+    Abbey Road
+    Origin of Symmetry
+    Back in Black
+    */
 
 
 function eliminarAlbum() {
-    // desarrollar la función 👇
+    
+    // keydown: Captura los caracteres del teclado
+    document.addEventListener('keydown', function(event) {
+        
+        if (event.key === 'b') {
+
+            const nombreAlbumEliminar = prompt('Ingrese el nombre del álbum que desea eliminar:');
+
+            // OPCION: N°1
+            //const index = albumesFamosos.findIndex(album => album.nombre === nombreAlbumEliminar);
 
 
+            // OPCION: N°1
+            let index = -1; // Inicializamos el índice con un valor que indica que no se encontró el álbum
+
+            for (let i in albumesFamosos) {
+
+                if (albumesFamosos[i].nombre === nombreAlbumEliminar) {
+                    index = i; // Asignamos el índice si encontramos el álbum
+                    break; // Salimos del bucle una vez que encontramos el álbum
+                }
+            }
+
+
+            if (index !== -1) {
+
+                albumesFamosos.splice(index, 4); // Remove the album at the found index
+                //index:    índice del álbum desde donde se compienza a eliminar.
+                //1:        Cantidad de elementos a eliminar a partir del indice
+                
+                renderizarAlbunes(albumesFamosos); 
+                agregarQuitarFavorito(); 
+            } 
+            else {
+                alert('Álbum no encontrado');
+            }
+        }
+    });
 }
+    
 eliminarAlbum();
 
+  
