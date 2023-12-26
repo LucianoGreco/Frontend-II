@@ -45,7 +45,7 @@ button.onclick = evento => console.log('Algo nuevo', evento);
 */
 
 
- 
+
 function agregarQuitarFavorito(){
     const botones = document.querySelectorAll('.fa-heart')
 
@@ -55,16 +55,25 @@ function agregarQuitarFavorito(){
         boton.addEventListener('click', function(){
             // console.log(boton.id); 
 
-            //Cuando el evento click se dispara se ejecuta este codigo
-            for(let album of albumesFamosos){
+            // OPCION 1 - Cuando el evento click se dispara se ejecuta este codigo
+            /*for(let album of albumesFamosos){
 
                 if(album.id == boton.id){
                     // album.like = !album.like;
                     album.like = this.classList.toggle('favorito'); // Agrega y quita
-                    console.log(boton.id, album.like); 
                 }
   
-            }
+            }*/
+
+            // OPCION 2 - Filtramos el album de elementos por el id utilizado el metodo filter() => array
+            let album = albumesFamosos.filter( x => x.id == boton.id)[0]; // FUNCION FLECHA EXPRESADA ANONIMA
+            album.like = !album.like
+            console.log(album);
+
+                /* EQUIVALENTE A filter()
+                function filterBy(x){
+                    return x.id == boton.id
+                }*/
 
             renderizarAlbunes(albumesFamosos); // renderizando
             agregarQuitarFavorito(); // Tenemos que Habilitar los eventos
@@ -72,7 +81,7 @@ function agregarQuitarFavorito(){
         });
     }
 }
-agregarQuitarFavorito();
+agregarQuitarFavorito(); 
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /*                         [5] FUNCION: Eliminar album                        */
