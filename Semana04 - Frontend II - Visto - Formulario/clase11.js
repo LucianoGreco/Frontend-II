@@ -132,14 +132,8 @@ formulario.addEventListener('submit', (e) => {
     const usuarioInformacion = capturarDatos();
     const errores = validarInformacion(usuarioInformacion);
     mostrarValidaciones(errores);
-
-    if (errores.length === 0) {
-        // No hay errores, puedes proceder con el envío del formulario o lo que sea necesario.
-        //console.log("Formulario válido. Enviar datos...");
-    } else {
-        // Hay errores, puedes mostrarlos al usuario o tomar la acción necesaria.
-        //console.error("Errores en el formulario:", errores);
-    }
+    mostrarMensajeExito(errores)
+    
 });
 
 
