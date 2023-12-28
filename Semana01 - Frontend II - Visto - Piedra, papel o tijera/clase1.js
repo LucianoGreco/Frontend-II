@@ -1,65 +1,50 @@
-// console.log("Prueba");
-
-
-
-//const UNA_VARIABLE = "No cambia el valor"
+const UNA_VARIABLE = "No cambia el valor"
 //UNA_VARIABLE = "cambioValor" // ERROR: No se puede asignar un valor de una variable constante
 
 
+/*  function prompt(message?: string | undefined , _default?: string | undefined): string | null
+        a.  message?: string | undefined,
+        b.  _default?: string | undefined): string | null
+        c.  ? = significa Opcional */
 
-/* function prompt(message?: string | undefined, _default?: string | undefined): string | null
-
-    2 parametros:
-        message?: string | undefined,
-        _default?: string | undefined): 
-                                        Devuelve: string | null
-
-        ? = significa Opcional
-
-*/ /*
-
-let datoIngresado = prompt("Ingrese el valor 33");
-console.log(datoIngresado);
+let valorIngresado = prompt("Ingrese el valor 33");
+console.log(valorIngresado);
 
 // Sentencia del flujo de ejecucion:
-if(datoIngresado == 33){
+if(valorIngresado == 33){
     alert("El dato ingresado es correcto. ✅");
 } else{
     alert("El dato ingresado es incorrecto. ❌");
-} */ /*
+} 
+
+
 
 let nombres = ['Luciano','Celeste','Yanela','Gladys','Roly'];
 
-
-
+// For(contador, condicion, contador++)
 for(let i=0 ; i<nombres.length ; i++){
-    
     if( nombres[i] == 'Luciano'){
         let nombre = nombres[i]
         console.log(nombre);
-        break
+        break;
     }
 }
 
 
-
-let contador = 0
+// contador; While(condicion){ejecucion} 
+let contador = 0; 
 while(nombres[contador] != 'Luciano' && contador < nombres.length){
     contador++;
 }
 console.log(contador < nombres.length ? 'Se encotró' : 'No se enecontró');
 
 
-
-let datoIngresado;
+// do{ejecucion}; while(condicion){ejecucion..
+let nuevoIngreso;
 do{
-    datoIngresado = prompt('Ingresá el valor 33')
-}while(datoIngresado != 33);
-console.log(datoIngresado); */
-
-
-//--------------------- FIN DE NOTAS ----------------------------//
-
+    nuevoIngreso = prompt('Ingresa un nuevo valor: ')
+}while(datoIngresado2 != 33);
+console.log(datoIngresado2); 
 
 
 
@@ -71,17 +56,17 @@ console.log(datoIngresado); */
 function iniciarJuego(){   
     let nombre;
     do{
-        nombre = prompt("Por favor, ingresa tu nombre:");
+        nombre = prompt("Ingresa tu nombre: ");
         if(nombre.length < 3){
-            alert("Por favor, ingresa un nombre válido con al menos 3 caracteres.");
+            alert("El nombre debe contener mas de 3 caracteres.");
         }
         else if(!nombre){
-            break
+            break;
         }
     }while(nombre.length < 3);
 
-    let mensaje = 'Gracias por juigar '+nombre+'. ¡Mucha Suerte!💪'
-    alert(mensaje.toUpperCase())
+    let mensaje = 'A jugar '+nombre+'. ¡Mucha Suerte!💪'
+    alert(mensaje.toUpperCase()) // Mayuscula
 }
 
 iniciarJuego();
