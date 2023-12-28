@@ -8,28 +8,16 @@ function mostrarValidaciones(errores){
         // Opcion 1
         /*
         if(i % 2 == 0){
-            contenedorErrores.innerHTML += `
-            <li class="red">
-                ${error}
-            </li>        
-            `;
-        }
-        else{
-            contenedorErrores.innerHTML += `
-            <li class="blue">
-                ${error}
-            </li>        
-            `;
+            contenedorErrores.innerHTML += `<li class="red">${error}</li>`;
+        }else{
+            contenedorErrores.innerHTML += `<li class="blue">${error}</li> `;
         } */
 
 
         // Opcion 2.a 
-        // let clase = i % 2 == 0 ? 'red' : 'blue';
-        // contenedorErrores.innerHTML += `
-        //     <li class="${clase}">
-        //         ${error}
-        //     </li>        
-        // `;
+        /*let clase = i % 2 == 0 ? 'red' : 'blue';
+        contenedorErrores.innerHTML += `<li class="${clase}"> ${error}</li>`; */
+
         // Opcion 2.b
         contenedorErrores.innerHTML += `
         <li class="${i % 2 == 0 ? 'red' : 'blue'} borderContainer">
