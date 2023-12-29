@@ -1,15 +1,15 @@
-/*
 // FUNCION DECLARADA NOMINAL 
-
 function funcionDeclaradaNominal(parametro1, parametro2){
     return parametro1 + parametro2;
 } 
+
 
 // FUNCION EXPRESADA NOMINAL - Funciones Flechas
 let funcionExpresadaNominalA = (num1, num2) => { return num1 + num2 }; //   return explicito
 let funcionExpresadaNominalD = (num1, num2) => num1 + num2; //              return implicito
 let funcionExpresadaNominalB = num1 => console.log(num1); //                1 parametro
 let funcionExpresadaNominalC = () => console.log('hola'); //                Sin parametros
+
 
 // FUNCION ANONIMA DECLARADA
 () => console.log('Luciano'); 
@@ -18,13 +18,14 @@ let funcionExpresadaNominalC = () => console.log('hola'); //                Sin 
 // DOM - Capturo el boton
 const button = document.querySelector('button');
 
+
+// Funcion declarado nominal
 function mostrarMensaje(){ 
     console.log('Algo nuevo');
 }
-
-// Funcion declarada nominal
 button.addEventListener('click', mostrarMensaje);
 button.onclick = mostrarMensaje;
+
 
 // Funcion declarada anonima
 button.addEventListener('click', function(evento){
@@ -34,15 +35,13 @@ button.onclick = function(evento){
     console.log('Algo nuevo', evento);
 }
 
+
 // Funcion expresada anónima
 button.addEventListener('click', evento => console.log('Algo nuevo', evento))
 button.onclick = evento => console.log('Algo nuevo', evento);
 
-
 // console.log(mostrarMensaje());   // resultado
 // console.log(mostrarMensaje);     // ƒ funcion(){ console.log('..'); }
-
-*/
 
 
 
@@ -56,14 +55,12 @@ function agregarQuitarFavorito(){
             // console.log(boton.id); 
 
             // OPCION 1 - Cuando el evento click se dispara se ejecuta este codigo
-            /*for(let album of albumesFamosos){
-
+            for(let album of albumesFamosos){
                 if(album.id == boton.id){
                     // album.like = !album.like;
                     album.like = this.classList.toggle('favorito'); // Agrega y quita
                 }
-  
-            }*/
+            }
 
             // OPCION 2 - Filtramos el album de elementos por el id utilizado el metodo filter() => array
             let album = albumesFamosos.filter( x => x.id == boton.id)[0]; // FUNCION FLECHA EXPRESADA ANONIMA
@@ -77,15 +74,16 @@ function agregarQuitarFavorito(){
 
             renderizarAlbunes(albumesFamosos); // renderizando
             agregarQuitarFavorito(); // Tenemos que Habilitar los eventos
-
         });
     }
 }
 agregarQuitarFavorito(); 
 
-/* ----------------------------- MESA DE TRABAJO ---------------------------- */
-/*                         [5] FUNCION: Eliminar album                        */
-/* -------------------------------------------------------------------------- */ /*
+
+
+
+/* [5] FUNCION: ELIMNAR ALBUNES
+
 Debemos desarrollar la funcion de eliminar un album. Para esto le vamos a 
 preguntar al usuario cual quiere eliminar.
 
@@ -100,14 +98,11 @@ Vamos a seguir las indicaciones que nos permiten lograrlo utilizando eventos.
     5- Acto seguido debemos llamar a las funciones de renderizar y marcar favorito 
     para que sean nuevamente aplicadas. 
     
-    
     Para buscar la posicion del almbum en el array
-    a.  .findIndex() 
-    b.  for(let album of albumesFamosos){ if(album.id == boton.id){...} }
+        a.  .findIndex() 
+        b.  for(let album of albumesFamosos){ if(album.id == boton.id){...} }*/
 
-    */
-
-    /*
+    /* Gia albunes
     Nevermind
     Thriller
     The wall
@@ -123,18 +118,14 @@ function eliminarAlbum() {
     document.addEventListener('keydown', function(event) {
         
         if (event.key === 'b') {
-
             const nombreAlbumEliminar = prompt('Ingrese el nombre del álbum que desea eliminar:');
-
             // OPCION: N°1
             //const index = albumesFamosos.findIndex(album => album.nombre === nombreAlbumEliminar);
 
-
-            // OPCION: N°1
+            // OPCION: N°2
             let index = -1; // Inicializamos el índice con un valor que indica que no se encontró el álbum
 
             for (let i in albumesFamosos) {
-
                 if (albumesFamosos[i].nombre === nombreAlbumEliminar) {
                     index = i; // Asignamos el índice si encontramos el álbum
                     break; // Salimos del bucle una vez que encontramos el álbum
@@ -157,7 +148,6 @@ function eliminarAlbum() {
         }
     });
 }
-    
 eliminarAlbum();
 
   

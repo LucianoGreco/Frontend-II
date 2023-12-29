@@ -5,7 +5,6 @@
 // setTimeout()
 
 
-/*
 // itera y ejecuta la funcion de cada elemento
 albumesFamosos.forEach((element, index) => {
     console.log(element);
@@ -36,13 +35,13 @@ function outerFunction() {
   
     return innerFunction;
   }
-*/
-/*
 
 
-/*  REPITE LA EJECUCION 
+
+
+/*  setInterval() - REPITE LA EJECUCION 
 Ejecuta la funcion repetidamente en intervalos especificos
-    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ /*
+    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ 
 
     let i = 0;
     setInterval(()=>{
@@ -50,22 +49,18 @@ Ejecuta la funcion repetidamente en intervalos especificos
         i++;
     }, 1000); // 1000ms 
 
-*/
 
-
-/* RETARDA LA EJECUCION POR UNICA VEZ
+/* setTimeout() - RETARDA LA EJECUCION POR UNICA VEZ
 Ejecuta la funcion despues de un tiempo (ms) determinado
-    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ /*
+    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ 
 
     setTimeout(() => {
         console.log('setTimeOut 3 segudnos');
     }, 3000);
-*/
 
 
 
 
-// nuevo array con listado de planes
 const planesMensuales = [{
         tipo: "Básico",
         costo: 300,
@@ -92,17 +87,13 @@ window.addEventListener('load', function(){
 
     const interval = setInterval(()=>{
 
-
         // Reseteo del contador al llegar a ultimo elemento
         contador = contador % planesMensuales.length;
-        
-        // Reseteo del contador EQUIVALENTE
+        // EQUIVALENTE
         // if(contador === planesMensuales.length){
         //     contador = 0;
         // }
-        
-        
-        
+                
         let plan = planesMensuales[contador]//posicion
 
         footer.innerHTML = `
@@ -127,16 +118,13 @@ window.addEventListener('load', function(){
 // Añadimos la escucha del doble click en el footer para frenar el inntervalo
 
 
-/* -------------------------------------------------------------------------- */
-/*                               MESA DE TRABAJO                              */
-/* -------------------------------------------------------------------------- */ /*
+/*  MESA DE TRABAJO  
+
 Vamos a utilizar el setTimeout para preguntarle al usuario despues de unos segundos.
 
     1- Una vez cargada la página y pasados 12 segundos debemos preguntarle al usuario si desea
-    conocer más música (podemos usar un confirm).
-
+       conocer más música (podemos usar un confirm).
     2- Si el usuario confirma debemos abrir una nueva pestaña en -> https://open.spotify.com/
-
     3- Si el usuario cancela debemos agregar un parrafo dentro del div '#perfil'(sin eliminar nada dentro)
     4- El parrafo agregado debe ser de color verde y decir: "Usuario oficial de Spotifront"
     5- Por ultimo, si ese parrafo es clickeado, debe mostrar una alerta al usuario que diga: 

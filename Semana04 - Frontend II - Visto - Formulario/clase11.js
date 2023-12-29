@@ -3,17 +3,16 @@
 
 
 // Obtengo el formulario
-/*
 const formulario = document.querySelector('form')
 
-
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault(); // no termine de ocurrir el evento submit
+    e.preventDefault(); // No termine de ocurrir el evento submit
     capturarDatos()
 });
 
 
 function capturarDatos(){
+
     const objetoInformacion = {
         nombre: '',
         password: '',
@@ -41,23 +40,15 @@ function capturarDatos(){
 
         // Opcion 2
         let lista = Array.from(hobbies); // Array.from() convierte el elemento NodeListOf<> es un Array[]
-        
             // 2.a.
             objetoInformacion.hobbies = lista.filter(hobby => hobby.checked) // filtra los (chekc.checked == true)
-            
             // 2.b.
             for(let i of lista.filter(hobby => hobby.checked)){ 
                 objetoInformacion.hobbies.push(i.id);
             } 
 
-
         // Opcion 3
-        objetoInformacion.hobbies = Array.from(hobbies) 
-        
-        .filter(hobby => hobby.checked) 
-
-        // Devuelve array con los (chekc.checked == true)
-        .map(hobbyFiltrado => {
+        objetoInformacion.hobbies = Array.from(hobbies).filter(hobby => hobby.checked).map(hobbyFiltrado => {
             console.log(hobbyFiltrado.id);
             return hobbyFiltrado.id
         }); 
@@ -72,7 +63,6 @@ function capturarDatos(){
                 objetoInformacion.nacionalidad = nacion.id;
             }
         }) 
-
 
         // Opcion 2
         objetoInformacion.nacionalidad = Array.from(nacionalidad)
@@ -89,12 +79,12 @@ function capturarDatos(){
     //  return objetoInformacion;
 }
 
-*//*
+
 
 let prueba = ['Luciano', 'Gabriel', 'Greco', 'Luciano'];
 
 // Opcion 1
-console.log(prueba.filter(i => i == 'Luciano'));
+console.log(prueba.filter(i => i == 'Luciano')); // Filtra los elementos que se llaman Luciano
 
 // Opcion 2
 let resultado = [];
@@ -104,36 +94,32 @@ prueba.forEach(i => {
         resultado.push(i)
     }
 });
-console.log(resultado); */
+console.log(resultado); 
 
 
 
 
-/* ----------------------------- MESA DE TRABAJO ---------------------------- */
-/* -------------------------------------------------------------------------- */
-/*                         [3] FUNCION: validar datos                         */
-/* -------------------------------------------------------------------------- */
-// Desarrollar la funcion 3 de validar los datos.
-// Esta funcion va a recibir un objeto con la misma estructura de obejetoInformacion
-// Entonces dentro de esta función vamos a chequear ciertas validaciones.
+/* [3] FUNCION: validar datos 
+Desarrollar la funcion 3 de validar los datos.
+Esta funcion va a recibir un objeto con la misma estructura de obejetoInformacion
+Entonces dentro de esta función vamos a chequear ciertas validaciones.
 
-// 1- La funcion devuelve un listado de errores según las comprobaciones que hace sobre el objeto.
+    1- La funcion devuelve un listado de errores según las comprobaciones que hace sobre el objeto.
+    2- Si el nombre no es un texto y tiene menos de 3 caracteres sumar el error: "El nombre debe tener al menos 3 caracteres."
+    3- Si la contraseña tiene menos de 6 caracteres, sin contar espacios al principio, en el medio o final, sumar el error: "La contraseña debe tener al menos 6 caracteres, entre letras y símbolos."
+    4- Si el telefono tiene menos de 10 números, sumar el error: "No es un teléfono válido."
+    5- Si la lista de hobbies tiene más de 4 items, sumar el error: "Sólo es posible seleccionar 4 hobbies."
+    5- Si no hay una nacionalidad definida, sumar el error: "Debe seleccionar una nacionalidad." */
 
-// 2- Si el nombre no es un texto y tiene menos de 3 caracteres sumar el error: "El nombre debe tener al menos 3 caracteres."
-// 3- Si la contraseña tiene menos de 6 caracteres, sin contar espacios al principio, en el medio o final, sumar el error: "La contraseña debe tener al menos 6 caracteres, entre letras y símbolos."
-// 4- Si el telefono tiene menos de 10 números, sumar el error: "No es un teléfono válido."
-// 5- Si la lista de hobbies tiene más de 4 items, sumar el error: "Sólo es posible seleccionar 4 hobbies."
-// 5- Si no hay una nacionalidad definida, sumar el error: "Debe seleccionar una nacionalidad."
-
-const formulario = document.querySelector('form')
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
+
     const usuarioInformacion = capturarDatos();
     const errores = validarInformacion(usuarioInformacion);
+
     mostrarValidaciones(errores);
     mostrarMensajeExito(errores)
-    
 });
 
 

@@ -5,34 +5,30 @@ function mostrarValidaciones(errores){
 
     errores.forEach((error, i) => {
 
-        // Opcion 1
-        /*
+        /* Opcion 1
         if(i % 2 == 0){
             contenedorErrores.innerHTML += `<li class="red">${error}</li>`;
         }else{
             contenedorErrores.innerHTML += `<li class="blue">${error}</li> `;
         } */
 
-
         // Opcion 2.a 
-        /*let clase = i % 2 == 0 ? 'red' : 'blue';
-        contenedorErrores.innerHTML += `<li class="${clase}"> ${error}</li>`; */
+        let clase = i % 2 == 0 ? 'red' : 'blue';
+        contenedorErrores.innerHTML += `<li class="${clase}"> ${error}</li>`; 
 
-        // Opcion 2.b
+        /* Opcion 2.b 
         contenedorErrores.innerHTML += `
         <li class="${i % 2 == 0 ? 'red' : 'blue'} borderContainer">
             <strong>
                 ${i+1}. ${error.toUpperCase()}
             </strong>
         </li>        
-    `;
+    `; */
     });
 }
 
-/* ----------------------------- MESA DE TRABAJO ---------------------------- */
-/* -------------------------------------------------------------------------- */
-/*                [5] FUNCION: Formulario completado con éxito                */
-/* -------------------------------------------------------------------------- */ /*
+/*  [5] FUNCION: Formulario completado con éxito
+
 Esta funcion se va a encargar de mostrar que el formulario se completó correctamente.
 Para eso debera cumplir con los siguientes requerimientos.
 
