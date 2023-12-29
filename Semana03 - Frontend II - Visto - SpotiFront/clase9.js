@@ -166,7 +166,7 @@ window.addEventListener('load', function () {
 });
 
 
-
+/*
 window.addEventListener('load', () => {
     document.querySelector('img');
 
@@ -174,5 +174,5 @@ window.addEventListener('load', () => {
         // Esta funcion no se puede llamar por fuera de su scope
     }
 });
-unaFuncion(); //Funcion fuera de su scope
+unaFuncion(); //Funcion fuera de su scope */
 

@@ -4,7 +4,7 @@ for(): Recorre cantidad de veces
 
         Inicializa itrador
             Verifica la condicion 
-                Itraccion (No se conoce)
+                Itraccion (aumenta o disminuye)
                         Ejecucion del codigo
 
 while: Recorre mientras se cumpla una condicion
@@ -12,7 +12,7 @@ while: Recorre mientras se cumpla una condicion
         Inicializa itrador
             Verifica la condicion 
                 Ejecucion del codigo
-                    Itraccion (No se conoce)
+                    Itraccion (aumenta o disminuye)
 
 
 do while: Recorre y continua segun la condicion
@@ -20,14 +20,20 @@ do while: Recorre y continua segun la condicion
         Inicializa itrador
             Ejecucion del codigo
                 Verifica la condicion 
-                    Itraccion (No se conoce)
+                    Itraccion (aumenta o disminuye)
 
 //--------------------- FIN DE NOTAS ----------------------------// */
 
 
 
-// Gana el primer jugador que llega a 2 puntos
+/* CONSIGNA MESA DE TRABAJO
+1. Modificar el objeto puntajes para poder contabilizar los empates tambien
+2. Modificar el bucle para poder sumar tambien las cantidades de empates
+3. Mostrar en cada partida el resultado al usuario
+4. Mostrar finalmente la cantidad de partidas jugadas y que se sepa quien gano o empato */
 
+
+// Gana el primer jugador que llega a 2 puntos
 function empezarJuego(){
     const CATIDAD_INTENTOS_PARA_GANAR = 3;
 
@@ -89,11 +95,7 @@ function mostrarGanador(puntaje){
 empezarJuego()
     
 
-/* CONSIGNA MESA DE TRABAJO
-1. Modificar el objeto puntajes para poder contabilizar los empates tambien
-2. Modificar el bucle para poder sumar tambien las cantidades de empates
-3. Mostrar en cada partida el resultado al usuario
-4. Mostrar finalmente la cantidad de partidas jugadas y que se sepa quien gano o empato */
+
 
 
 

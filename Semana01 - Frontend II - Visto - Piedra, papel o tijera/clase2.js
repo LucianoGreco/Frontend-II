@@ -11,7 +11,7 @@ function jugarUsuario(){
     do{
         jugadaUsuario = parseInt(prompt('(1) Piedra ✊ - (2) Papel 🖐 - (3) Tijera ✌'));
     } while(isNaN(jugadaUsuario) || jugadaUsuario < 1 || jugadaUsuario > 3 );
-
+    // IsNan: No es un número
 
     switch (jugadaUsuario) {
         case 1:
@@ -47,9 +47,6 @@ function jugarComputadora(){
         default:
             break;
     }
-
-
-
     return jugadaComputadora
 }
 
@@ -65,7 +62,6 @@ function compararJugadas(){
     else if(usuario == 1 && computadora == 3 || 
             usuario == 2 && computadora == 1 ||
             usuario == 3 && computadora == 2 ) {
-                
                 return 'G'
     }
     else{

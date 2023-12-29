@@ -15,7 +15,7 @@ const estadoErroresOk = {
 
 
 // Capturamos el evento del formulario
-const formulario = document.querySelector('form');
+const formulario = document.querySelector('form'); //form
 formulario.addEventListener('change', () => {
 
     // Validando email formulario
@@ -116,3 +116,31 @@ function mostrarMensajeDeErrores(estadoErrores) {
 }
 
 // 52:59 / 01:08:49
+const inputEmail = document.querySelector('#email');
+inputEmail.addEventListener('keypress', (e) => {
+
+    const caractersInvalidosA = [',','!','#'];
+    const caractersInvalidosB = ',!#';
+
+    // keypress: captura el caracter que se presiona
+    if(caractersInvalidosB.includes(e.key)){
+        // Prevenimos la continuacion del evento y no se escribe la tecla oprimida
+        e.preventDefault();
+    }
+})
+
+/* ----------------------------- MESA DE TRABAJO ---------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                [5] FUNCION: Formulario completado con éxito                */
+/* -------------------------------------------------------------------------- */ /*
+Esta funcion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
+Para eso debera cumplir con los siguientes requerimientos.
+
+    1 - Deshabilitar el boton del formulario.
+    2 - Esperar 3 segundos para redireccionar a la página de 'usuario.html'
+    3 - Durante ese tiempo el boton deshabilitado debe mostrar el texto: "Cargando..."
+    4 - Cuando vaya a la página de 'usuario.html' NO se debe permitir que mediante el 
+        botón de "Atrás"(la flechita del navegador) el usuario vuelva a index. */
+
+
+

@@ -65,15 +65,18 @@ for(let i in objeto){
     //console.log(objeto[i]);
 }
 
-/* -------------------------------------------------------------------------- */
-/*                          CONSIGNA MESA DE TRABAJO                          */
-/* -------------------------------------------------------------------------- */
-// a - Escribir un selector para cada elemento del sitio y guardalo en una variable.
-// b - Plasmarlo en un diagrama de árbol como la consigna: https://docs.google.com/document/d/15nGvKkEcbrRgwqV50ISh0QYZ_TO67vmWQaLfNpUxqjs/preview
+//--------------------- FIN DE NOTAS ----------------------------// */
+
+
+
+
+/*  CONSIGNA MESA DE TRABAJO                  
+a - Escribir un selector para cada elemento del sitio y guardalo en una variable.
+b - Plasmarlo en un diagrama de árbol como la consigna: 
+https://docs.google.com/document/d/15nGvKkEcbrRgwqV50ISh0QYZ_TO67vmWQaLfNpUxqjs/preview */
 
 
 // Ejercicio A
-
 // Titulo Principal
 let titulo = document.querySelector('h1'); 
 // console.log(titulo.innerText);

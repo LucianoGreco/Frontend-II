@@ -1,6 +1,11 @@
 const UNA_VARIABLE = "No cambia el valor"
 //UNA_VARIABLE = "cambioValor" // ERROR: No se puede asignar un valor de una variable constante
 
+// == (Igualdad débil) ------- console.log(1 == '1');  // true
+// === (Igualdad estricta) --- console.log(1 === '1');  // false
+
+
+
 
 /*  function prompt(message?: string | undefined , _default?: string | undefined): string | null
         a.  message?: string | undefined,
@@ -11,7 +16,7 @@ let valorIngresado = prompt("Ingrese el valor 33");
 console.log(valorIngresado);
 
 // Sentencia del flujo de ejecucion:
-if(valorIngresado == 33){
+if(valorIngresado === 33){
     alert("El dato ingresado es correcto. ✅");
 } else{
     alert("El dato ingresado es incorrecto. ❌");
@@ -45,6 +50,9 @@ do{
     nuevoIngreso = prompt('Ingresa un nuevo valor: ')
 }while(datoIngresado2 != 33);
 console.log(datoIngresado2); 
+
+//--------------------- FIN DE NOTAS ----------------------------// */
+
 
 
 
