@@ -1,17 +1,15 @@
 
-
 function obtenerUsuario(){
-    
     let nombre
+
     do{ //Validar
         nombre = prompt('Ingresá tu nombre: ');
-        console.log(nombre);
+        // console.log(nombre);
     }while(nombre == null || nombre.length < 3);
 
-    const contenedorNombre = document.querySelector('#nombreUsuario');
-    contenedorNombre.innerText = nombre
+    const nombreUsuario = document.querySelector('#nombreUsuario');
+    nombreUsuario.innerText = nombre
 }
-
 //obtenerUsuario();
 
 const albumesFamosos = [{
@@ -59,19 +57,19 @@ const albumesFamosos = [{
 ];
 
 
-/*
-function renderizarAlbunes(lista){
+
+// Mostrar albunes
+function renderizarAlbunes(albumesFamosos){
     const covers = document.querySelector('.covers');
+    covers.innerHTML = ''
 
-    
-    for(let i of lista){ // lista[i]
+    for(let i of albumesFamosos){ // lista[i]
         covers.innerHTML += `
-
-        <li id='${i.id}'>
-            <img src='${i.imagen}'>
-            <p>${i.nombre}</p>
-            <i id='${i.id}' class='fa fa-heart ${getFavorito(i)}'></i>
-        </li>`;
+            <li id='${i.id}'>
+                <img src='${i.imagen}'>
+                <p>${i.nombre}</p>
+                <i id='${i.id}' class='fa fa-heart ${getFavorito(i)}'></i>
+            </li>`;
     }
     // <i class='fa fa-heart ${i.like ? 'favorito' : ''}'></i>
 
@@ -80,46 +78,15 @@ function renderizarAlbunes(lista){
             return 'favorito';
         }
         return '';
-    }
-    
+    }  
 }
-renderizarAlbunes(albumesFamosos) */
-
-function renderizarAlbunes(lista){
-
-    const covers = document.querySelector('.covers');
-    covers.innerHTML = ''
-
-    for(let album of lista){ // lista[i]
-
-        covers.innerHTML += 
-        `
-            <li id='${album.id}'>
-                <img src='${album.imagen}'>
-                <p>${album.nombre}</p>
-                <i id='${album.id}' class='fa fa-heart ${getFavorito(album)}'></i>
-            </li>
-        `;
-
-    }
-    // <i class='fa fa-heart ${i.like ? 'favorito' : ''}'></i>
-
-    function getFavorito(album){
-        if(album.like){
-            return 'favorito';
-        }
-        return '';
-    }
-    
-}
-renderizarAlbunes(albumesFamosos) 
+renderizarAlbunes(albumesFamosos)
 
 
 
-/* ----------------------------- MESA DE TRABAJO ---------------------------- */
-/* -------------------------------------------------------------------------- */
-/*                   [3] FUNCION: mostrar datos del usuario                   */
-/* -------------------------------------------------------------------------- */ /*
+
+
+/* [3] FUNCION: mostrar datos del usuario 
 
 Dentro del div '.perfil' tenemos un parrafo con 2 span en los que debemos colocar
 correctamente su contenido.
@@ -131,7 +98,7 @@ Para eso debemos hacer ciertos calculos y colocar esa info en el HTML. Debemos:
     sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos ) */
 
 
-function mostrarDatosEnPerfil(lista) {
+function mostrarDatosEnPerfil(listaObjetos) {
 
     const cantidadAlbunes = document.querySelector('#cant-albums');
     const cantidadFavoritos = document.querySelector('#cant-favoritos');
@@ -141,8 +108,8 @@ function mostrarDatosEnPerfil(lista) {
 
     // for of = Array []
     // for in = objetos {}
-    for (let i in lista) {
-        if (lista[i].like) {
+    for (let i in listaObjetos) {
+        if (listaObjetos[i].like) {
             favoritos++;
         }
     }
@@ -158,6 +125,4 @@ mostrarDatosEnPerfil(albumesFamosos);
 
 /* Precedencia de operadores
 https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Operator_precedence
-
-
 */
