@@ -90,6 +90,7 @@ form button:disabled {
     visibility: visible;
 }
 
+
 /* -------------------------------- page user ------------------------------- */
 .user {
     background-color: #ddd;
@@ -106,4 +107,10 @@ form button:disabled {
 
 .bg-primary {
     background-color: var(--secondary);
+}
+
+
+
+.pizarron{
+    background-color: black;
 }
