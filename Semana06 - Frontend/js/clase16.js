@@ -24,7 +24,7 @@ setTimeout(() =>{
     console.log('DENTRO del setTimeout'); // Flujo secundaroi
 }, 3000);
 
-console.log('FUERA del setTimeout'); // Flujo principal */
+console.log('FUERA del setTimeout'); // Flujo principal *//*
 
 
 
@@ -64,7 +64,7 @@ boton.addEventListener('click', function() {
             parrafo.style.color = 'red';
             parrafo.innerText = error;
     })
-} )
+} ) */
 
 
 
@@ -81,7 +81,7 @@ pero hay varias maneras de llegar al resultado.
         esa estructura de etiquetas para el resto de los comentarios.
     4- Para el renderizado podemos utilizar .forEach() pero se valora también intentar
         llegar al mismo resultado utilizando .map()
-Muchos éxitos! */ /*
+Muchos éxitos! */ 
 
 let listadoComentarios = [{
     postId: 1,
@@ -197,4 +197,3 @@ consultaAsincrona("endpoint")
     .catch(error => console.error(error));
 
 
-*/
