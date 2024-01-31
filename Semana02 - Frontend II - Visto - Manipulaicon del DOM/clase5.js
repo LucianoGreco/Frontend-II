@@ -18,93 +18,96 @@ b. className: Remplasa la clase
             let element = document.getElementById("miElemento");
             element.className = "nuevaClase"; */ 
 
-function prueba (){
-// MANIPULAR ELEMENTOS:
-    // Capturo el elemento
-    const elemento = document.querySelector(''); // </h1>
-    //let elemento = document.getElementById("miElemento"); // miElemento
+
+function manupulacionDom(){
+
+    // CAPTURAR ELEMENTOS
+    // const body = document.querySelector('body') // Capturamos el body
+    // const titulo = document.querySelector('h1'); // Capturamos el titulo
+    // //const subtitulos = document.querySelectorAll('h2'); //  Capturamos todos los subtitulos 
+    // const dolar = document.querySelector('.dolar') // Capturamos informacion solar
+
+    let objetoDolar = {
+        Compra: 1000.51,
+        Venta: 1000.66
+    };
+
+    function modificarColor(elemento, color){
 
         // a. Modificar estolo
-        elemento.style.color = 'red'; //---------- <h1 style.color = 'red'>Titulo</h1>
+        elemento.style.color = `${color}`; //---------- <h1 style.color = 'red'>Titulo</h1>
+
         // b. Modificar la clase
-        elemento.className = 'letra'; // Setiamos el nombre de la clase
+        //elemento.className = 'colorBlue'; // Setiamos el nombre de la clase
        
         // css =
             //  .letraRoja{ color: red; }
             //  .letraVerde{ color: greed; }
 
         // html =  <h1 class="letraVerde">Titulo</h1> 
-
-
-
-// PROPIEDADES DE JAVASCRIPT 
-
-    //a. innerText: Devuelve o establece el texto dentro del elemento
-        //a. Obtiene 
-            let texto = elemento.innerText; 
-        //b. Establece
-            elemento.innerText = "Nuevo texto"; 
-
-    // b. innerHTML: Devuelve o establece contenido html incluyendo etiquetas
-        //a. Obtiene
-            let contenidoHTML = elemento.innerHTML; // <h1 id="miElemento">..</h1>
-        //b. Establece (Remplaza al anterior)
-            elemento.innerHTML = "<p>Nuevo texto</p>"; 
-
-
-
-// RECORRE UN ARREGLO DE ELEMENTOS
-
-    // Capturamos todos los <h2><h2> 
-    let arrayElementos = document.querySelectorAll(''); // h2
+    }
     
-    for(let i of arrayElementos){ //  ----------- Recorremos
-        i.innerHTML = "<p></p>" // -------------- Reemplaza las etiquetas <h2> por <p>
-        i.innerText = 'Luciano' //--------------- Asignamos (=) un texto 
-        i.innerText += ' Greco'.toUpperCase() //- Concatena un texto en mayuscula
-        i.style="background-color: black;" // --- Agrega un estilo a la etiqueta
-        i.className = 'red'; // ----------------- Agrega una clase a la etiqueta
+    function modificarContenido(elemento, textoActual){
+    //a. innerText
+
+        //a. Obtiene el texto
+        let textoAnterior = elemento.innerText; 
+        console.log(textoAnterior); // Guardo el titulo anterior: Frontend News
+
+        //b. Establece el texto
+        elemento.innerText = `${textoActual}`; 
+            
+
+    // b. innerHTML
+        //a. Obtiene el html
+            let contenidoHTML = elemento.innerHTML; // <h1 id="miElemento">..</h1>
+            console.log(contenidoHTML);
+
+        //b. Establece el html
+            //elemento.innerHTML = "<p>Hace mucho calor 🌞</p>"; 
     } 
+   
+    function modificarElementos(elementos, html, texto1, texto2, color, clase){
 
+        for(let i of elementos){ //  ----------- Recorremos
+            i.innerHTML = `${html}` // -------------- Reemplaza las etiquetas <h2> por <p>
+            i.innerText = `${texto1}` //--------------- Asignamos (=) un texto 
+            i.innerText += ` ${texto2}`.toUpperCase() //- Concatena un texto en mayuscula
+            i.style=`background-color: ${color}`; // --- Agrega un estilo a la etiqueta
+            i.className = `${clase}`; // ----------------- Agrega una clase a la etiqueta red
+        } 
+    }
 
-
-// MODIFICAR EL TAMAÑO DE LA LETRA 
-
-    // Capturamos el body
-    let body = document.querySelector('body') // body
-
-    function cambiarTamaño(body){
+    function cambiarTamaño(elemento){
         // Verifica si la clase petenece al elemento (true false.)
-        let tamaño = body.classList.contains('body-small'); //  CSS: .body-small { font-size: 8px; }
+        let tamaño = elemento.classList.contains('body-small'); //  CSS: .body-small { font-size: 8px; }
         console.log(tamaño);
 
         if(tamaño){
-            body.classList.add('body-small');
+            elemento.classList.add('body-small');
         }
         else{
-            body.classList.remove('body-small');
+            elemento.classList.remove('body-small');
         }
 
-        body.classList.toggle('body-small'); // toggle: Activa y desactiva
-    }  
-    cambiarTamaño(body); 
-
-
-
-// ACTUALIZAR EL VALOR DEL DOLAR Y RENDERIZARLO 
-    let Dolar = {
-        Compra: 1000.51,
-        Venta: 1000.66
-    };
-
-    function actualizarValoarDolar(valorDolar){
-        const dolar = document.querySelector('.dolar')
-
-        dolar.innerText = 
-        `💸 Dolar Hoy ( Compra: $${valorDolar.Compra} / Venta: $${valorDolar.Venta} )`;
+        elemento.classList.toggle('body-small'); // toggle: Activa y desactiva
     }
-    actualizarValoarDolar(Dolar);
+    
+    function actualizarValoarDolar(elemento, objeto){
+        elemento.innerText = 
+        `💸 Dolar Hoy ( Compra: $${objeto.Compra} / Venta: $${objeto.Venta} )`;
+    }
+
+    modificarColor(titulo,'blue');
+    modificarContenido(clima, 'Hace mucho calor 🌞')
+    modificarElementos(subtitulos,'<p></p>','Luciano','Greco','black','red');
+    cambiarTamaño(titulo);
+    actualizarValoarDolar(dolar, objetoDolar);
 }
+
+manupulacionDom();
+
+
 
 
 

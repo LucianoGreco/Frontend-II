@@ -1,7 +1,7 @@
 /*
 Expresion: Devuelve un valor como resultado
 Sentencia: Realiza alguna accion */
-const tree = [
+const array = [
     [
         ['1A'],
         [
@@ -15,14 +15,17 @@ const tree = [
     ],
     ['7A','7B']
 ]
-//console.log(tree[0][1][1][1]); // 3B
+
+//console.log(array[0][1][1][1]); // 3B
 
 // console.log('Precionar "aqui" para ingresar'); // colocar comillas dentro de comillas 
-// console.log("Precionar 'aqui para ingresar"); // colocar comillas dentro de comillas 
+// console.log("Precionar 'aqui' para ingresar"); // colocar comillas dentro de comillas 
 
 
+/*
+    1. DOM 
+############################################################################################################## 
 
-/* ------------ DOM 
 DOM: Interfase. Conecta el html con javaScript
     Arbol: Suseccion de nodos que se conectan entre si - Estructuras recursivas
 
@@ -32,7 +35,7 @@ DOM: document ------ Indica al html
     METODOS:
         .querySelector();   Captura un elemento por sus selectores css (etiqueta, clase, atributo, etc). 
                             Devuelve el primer elemento o null
-                            .querySelectorAll(); Devuelve un array elementos (for - for in - for of )
+                            .querySelectorAll(); Devuelve un array elementos. Se recorren con (for - for in - for of )
 
                                 let elemento = document.getElementById(".noticias article");
 
@@ -44,25 +47,31 @@ DOM: document ------ Indica al html
                                 let elemento = document.getElementById("miElemento");
 */
 
-document.getElementsByClassName
 
-// for of - for - RECORRE ELEMENTOS DE UN ARREGLO
-let arraglo = document.querySelectorAll('h2');
 
-for(let i of arraglo){ 
-    //console.log(i.innerText); 
+
+/*
+    2. for of - for - RECORRE ELEMENTOS DE UN ARREGLO
+############################################################################################################## */
+
+let titulos = document.querySelectorAll('h2');
+
+// for of
+for(let i of titulos){ 
+    // console.log(i.innerText); // innerText accede al contenido textual dentro de un elemento HTMl
 }
 
-for(let i=0 ; i<areglo.length ; i++){
-    let j = arraglo[i];
-    //console.log(j.innerText);
+// for
+for(let i=0 ; i<titulos.length ; i++){
+    let j = titulos[i];
+    // console.log(j.innerText);
 }
 
 
 // for in - RECORRE ATRIBUTOS DE UN OBJETO 
 let objeto = {atributo1 : 'valor1', atributo2 : 'valor2'};
 for(let i in objeto){ 
-    //console.log(objeto[i]);
+    // console.log(objeto[i]);
 }
 
 //--------------------- FIN DE NOTAS ----------------------------// */
@@ -70,64 +79,34 @@ for(let i in objeto){
 
 
 
-/*  CONSIGNA MESA DE TRABAJO                  
+/*  📚 CONSIGNA MESA DE TRABAJO ✅                  
 a - Escribir un selector para cada elemento del sitio y guardalo en una variable.
 b - Plasmarlo en un diagrama de árbol como la consigna: 
-https://docs.google.com/document/d/15nGvKkEcbrRgwqV50ISh0QYZ_TO67vmWQaLfNpUxqjs/preview */
+https://docs.google.com/document/d/15nGvKkEcbrRgwqV50ISh0QYZ_TO67vmWQaLfNpUxqjs/preview */ 
 
 
-// Ejercicio A
-// Titulo Principal
-let titulo = document.querySelector('h1'); 
-// console.log(titulo.innerText);
+// .a
+const body = document.querySelector('body') // Capturamos el body
+body.classList.add("body");
+const titulo = document.querySelector('h1'); // Titulo Principal
+titulo.classList.add("titulo");
+const boton = document.querySelector('button'); // boton cambio de tema
+boton.classList.add("boton");
+const clima = document.querySelector('.clima'); // Estado Clima
+clima.classList.add("clima");
+const dolar = document.querySelector('.dolar'); // Estado Dolar
+dolar.classList.add("dolar");
+const pieDePagina = document.querySelector('footer'); // titulo pie de pagina
+pieDePagina.classList.add("pieDePagina");
+const categorias = document.querySelectorAll('li'); // Lista de categorias
+categorias.forEach(i => i.classList.add("categoria"));
+const subtitulos = document.querySelectorAll('h2'); // titulo Articulo
+subtitulos.forEach(i => i.classList.add("subtitulos"));
+const imagen = document.querySelectorAll('img'); // Imagen Asticulo
+imagen.forEach(i => i.classList.add("imagen"));
+const parrafo = document.querySelectorAll('p'); // Parrafo articulos
+parrafo.forEach(i => i.classList.add("parrafon"));
 
-
-// Lista de categorias
-let categorias = document.querySelectorAll('li');
-for(let i of categorias){ 
-    // console.log(i.innerText); 
-}
-
-
-// boton cambio de tema
-let boton = document.querySelector('button');
-// console.log(boton.innerText);
-
-
-// Estado Clima
-let clima = document.querySelector('.clima');
-// console.log(clima.innerText);
-
-
-// Estado Dolar
-let dolar = document.querySelector('.dolar');
-// console.log(dolar.innerText);
-
-
-// titulo Articulo
-let tituloArt = document.querySelectorAll('h2');
-for(let i of tituloArt){ 
-    // console.log(i.innerText); 
-};
-
-
-// Imagen Asticulo
-let imagArt = document.querySelectorAll('img');
-for(let i of imagArt){ 
-    // console.log(i.innerText.innerText); 
-};
-
-
-// Parrafo articulos
-let parrafoArt = document.querySelectorAll('p');
-for(let i of parrafoArt){ 
-    // console.log(i.innerText); 
-};
-
-
-// titulo pie de pagina
-let pieDePagina = document.querySelector('footer');
-// console.log(pieDePagina.innerText); 
 
 
 
