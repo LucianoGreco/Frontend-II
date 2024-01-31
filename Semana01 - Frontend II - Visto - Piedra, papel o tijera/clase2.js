@@ -1,8 +1,8 @@
-/* CONSIGNA MESA DE TRABAJO: ✅
-1. Crear una funcion que reciba como parametro un texto (la frase de resultado de la partida).
-2. La funcion debe mostrar por consola el resultado de la partida.
-3. A su vez debe mostrar al usuario una alerta con el resultado de la partida.
-4. Finalmente, si el resultado fue una derrota debe motrarle al usuario un mesajue de aliento para que siga intentando. */
+/* 📚 CONSIGNA MESA DE TRABAJO: ✅
+✅1. Crear una funcion que reciba como parametro un texto (la frase de resultado de la partida).
+✅2. La funcion debe mostrar por consola el resultado de la partida.
+✅3. A su vez debe mostrar al usuario una alerta con el resultado de la partida.
+✅4. Finalmente, si el resultado fue una derrota debe motrarle al usuario un mesajue de aliento para que siga intentando. */
 
 function jugarUsuario(){
 
@@ -26,7 +26,6 @@ function jugarUsuario(){
         default:
             break;
     }
-
     return jugadaUsuario;
 }
 
@@ -47,7 +46,7 @@ function jugarComputadora(){
         default:
             break;
     }
-    return jugadaComputadora
+    return jugadaComputadora;
 }
 
 
@@ -59,6 +58,7 @@ function compararJugadas(){
     if(usuario == computadora){
         return 'E'
     }
+    // (1) Piedra ✊ - (2) Papel 🖐 - (3) Tijera ✌
     else if(usuario == 1 && computadora == 3 || 
             usuario == 2 && computadora == 1 ||
             usuario == 3 && computadora == 2 ) {

@@ -1,14 +1,12 @@
 /* DIFERENCIAS
 
 for(): Recorre cantidad de veces
-
         Inicializa itrador
             Verifica la condicion 
                 Itraccion (aumenta o disminuye)
                         Ejecucion del codigo
 
 while: Recorre mientras se cumpla una condicion
-
         Inicializa itrador
             Verifica la condicion 
                 Ejecucion del codigo
@@ -16,7 +14,6 @@ while: Recorre mientras se cumpla una condicion
 
 
 do while: Recorre y continua segun la condicion
-
         Inicializa itrador
             Ejecucion del codigo
                 Verifica la condicion 
@@ -26,11 +23,11 @@ do while: Recorre y continua segun la condicion
 
 
 
-/* CONSIGNA MESA DE TRABAJO
-1. Modificar el objeto puntajes para poder contabilizar los empates tambien
-2. Modificar el bucle para poder sumar tambien las cantidades de empates
-3. Mostrar en cada partida el resultado al usuario
-4. Mostrar finalmente la cantidad de partidas jugadas y que se sepa quien gano o empato */
+/* 📚 CONSIGNA MESA DE TRABAJO ✅
+✅1. Modificar el objeto puntajes para poder contabilizar los empates tambien
+✅2. Modificar el bucle para poder sumar tambien las cantidades de empates
+✅3. Mostrar en cada partida el resultado al usuario
+✅4. Mostrar finalmente la cantidad de partidas jugadas y que se sepa quien gano o empato */
 
 
 // Gana el primer jugador que llega a 2 puntos
@@ -44,11 +41,12 @@ function empezarJuego(){
     };
     
 
+    // Si uno NO cumpla la condicion no se ejecuta el codigo de While
     while ( puntajes.contadorUsuario < CATIDAD_INTENTOS_PARA_GANAR &&
             puntajes.contadorComputadora < CATIDAD_INTENTOS_PARA_GANAR &&
             puntajes.contadorEmpates < CATIDAD_INTENTOS_PARA_GANAR ){
 
-        const resultado = compararJugadas();
+        const resultado = compararJugadas(); // return G,P,E
         
         if(resultado === 'G'){
             console.log('GANASTE ✅');
@@ -62,21 +60,26 @@ function empezarJuego(){
             console.log('EMPATE 💙');
             puntajes.contadorEmpates++
         }
-        // console.log('\nPartidas Usuario: '+puntajes.contadorUsuario);
-        // console.log('Partidas Computadora: '+puntajes.contadorComputadora);
-        // console.log('Partidas Computadora: '+puntajes.contadorEmpates);
 
         console.log(puntajes);
-    } 
-    mostrarGanador(puntajes)
+        // console.log('\nPartidas Usuario: ' +puntajes.contadorUsuario);
+        // console.log('Partidas Computadora: ' +puntajes.contadorComputadora);
+        // console.log('Partidas Computadora: ' +puntajes.contadorEmpates);
+
+        
+    }
+
+    mostrarGanador(puntajes) // Array con los puntajes correspondientes
 }
 
 
 
 function mostrarGanador(puntaje){
-    // condicion ? true: false
-    // console.log(usuario == 3 ? '\nFELICIADADES GANASTE 🎉🎊🎇' : '\nLO SIENTO MUCHO - PERDISTE 😌👎');
 
+    // OPERADOR TERNARIO:  condicion ? true: false
+    console.log(puntaje.contadorUsuario === 3 ? '\nFELICIADADES GANASTE 🎉🎊🎇' : '\nLO SIENTO MUCHO - PERDISTE 😌👎');
+
+    /*
     if (puntaje.contadorUsuario == 3){
         console.log('\nFELICIADADES GANASTE 🎉🎊🎇');
     } 
@@ -85,7 +88,7 @@ function mostrarGanador(puntaje){
     }
     else{
         console.log('\nHUBO UN EMPATE 🤜🤛');
-    }
+    }*/
 
     console.log('\nPartidas Ganadas Usuario: '+puntaje.contadorUsuario+
                 '\nPartidas Ganadas Computadora: '+puntaje.contadorComputadora+
