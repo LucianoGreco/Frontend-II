@@ -85,7 +85,7 @@ b - Plasmarlo en un diagrama de árbol como la consigna:
 https://docs.google.com/document/d/15nGvKkEcbrRgwqV50ISh0QYZ_TO67vmWQaLfNpUxqjs/preview */ 
 
 
-// .a
+
 const body = document.querySelector('body') // Capturamos el body
 body.classList.add("body");
 const titulo = document.querySelector('h1'); // Titulo Principal
@@ -96,16 +96,17 @@ const clima = document.querySelector('.clima'); // Estado Clima
 clima.classList.add("clima");
 const dolar = document.querySelector('.dolar'); // Estado Dolar
 dolar.classList.add("dolar");
-const pieDePagina = document.querySelector('footer'); // titulo pie de pagina
-pieDePagina.classList.add("pieDePagina");
+const footer = document.querySelector('footer'); // titulo pie de pagina
+footer.classList.add("footer");
 const categorias = document.querySelectorAll('li'); // Lista de categorias
 categorias.forEach(i => i.classList.add("categoria"));
 const subtitulos = document.querySelectorAll('h2'); // titulo Articulo
 subtitulos.forEach(i => i.classList.add("subtitulos"));
-const imagen = document.querySelectorAll('img'); // Imagen Asticulo
+const imagen = document.querySelectorAll('img'); // Imagen Articulo
 imagen.forEach(i => i.classList.add("imagen"));
 const parrafo = document.querySelectorAll('p'); // Parrafo articulos
 parrafo.forEach(i => i.classList.add("parrafon"));
+
 
 
 

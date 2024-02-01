@@ -1,85 +1,100 @@
-// AGREGAMOS ATRIBUTO Y VALOR AL ELEMENTO
-let imagenes = document.querySelectorAll('.noticias article img');
 
-let contador = 1;
-for ( let i of imagenes){
-    // console.log(i.src);
-
-    i.setAttribute('alt',`Imagen n° ${contador}.`); // alt="Imagen n° 1">
-    contador++;
+function agregarAtributoYValorAlElemento(){
+    // AGREGAMOS ATRIBUTO Y VALOR AL ELEMENTO
+    let contador = 1; // Se inicializa el contador
+    imagen.forEach(i => {
+        i.setAttribute('alt',`Imagen n° ${contador}.`);
+        contador++;
+    });
 }
+// agregarAtributoYValorAlElemento()
+
+
+function agregarTextoAlFooter(elemento,mensaje){
+    //AGREGAR TEXTO AL FOOTER 
+
+    // Opcion 1 - appendChild: Agrega un nodo hijo al final del nodo padre
+    // Crear el elemento <p>
+    const parrafoFooter = document.createElement('p');
+    // Crea el texto para el párrafo
+    // const texto1 = document.createTextNode('Este es el texto con appendChild');
+    const texto = document.createTextNode(mensaje);
+    // Agrega el texto al párrafo
+    parrafoFooter.appendChild(texto);
+    // Agrega el párrafo al footer
+    elemento.appendChild(parrafoFooter); 
+
+    
+    // Opcion 2 - innerHTML: Agrega contenido html al elemento 
+    // Crea una variable con la clase .red
+    const className = 'red'; 
+    // Agrega html, asignandole una clase y contenido
+    footer.innerHTML = `<p class='${className}';>Este es el texto con innerHTML.</p>`; // todo en una sola linea
+    
+}
+// agregarTextoAlFooter(footer,'Este es el texto con appendChild');
 
 
 
-//AGREGAR TEXTO AL FOOTER
-const footer = document.querySelector('footer'); // captura
-
-// Crea elemento <p></p> y texto '...'
-const parrafo = document.createElement('p'); // Crea parrafo
-const texto = document.createTextNode('Esto es un texto de prueba'); // Crea texto
-
-// Opcion 1 - appendChild: Agrega un nodo hijo al final del nodo padre
-footer.appendChild(parrafo); // Agrega el parrafo al footer
-parrafo.appendChild(texto); //  Agrega el texto al parrafo
-
-// Opcion 2 - template Literal `html..${javaScript}..html`
-const className = 'red'; 
-footer.innerHTML = `<p class='${className}';>Esto es un texto de prueba.</p>`; // todo en una sola linea
 
 
-const listadoNoticias = [
+
+const nuevasNoticias = [
     {
-        titulo: 'La emocion de Lisandro Martinez',
-        parrafo: 'La increíble ovación de los hinchas de Manchester United al defensor argentino: "Quise llorar".',
-        foto: './img/futbol.webp'
+        titulo: 'Argenita tiene nuevo presidente',
+        parrafo: 'Despues de tantos años de fracaso, Argentina decide ser un pais liberal con vision capitalista',
+        foto: './img/JavierMilei.jpg'
     },
     {
-        titulo: 'La renuncia de Liz Truss',
-        parrafo: 'Boris Johnson interrumpió sus vacaciones y vuelve a sonar fuerte entre los posibles sucesores.',
-        foto: './img/boris.webp'
+        titulo: 'El automovil mal atractivo del mundo',
+        parrafo: 'Lamborghini es considerado el auto mas atractivo segun una encuesta realizada por la revista superautos',
+        foto: './img/lamborghini.jpg'
     },
     {
-        titulo: 'Los motivos',
-        parrafo: 'Una escuela argentina fue elegida entre las diez mejores del mundo.',
-        foto: './img/escuela.webp'
+        titulo: 'Programador Serial',
+        parrafo: 'Luciano Greco es el desarrollador mas copado que existe en el mundo',
+        foto: './img/LucianoGreco.jpeg'
     },
-    // {
-        // titulo: 'Luciano Greco',
-        // parrafo: 'Luciano Greco es un programador de San Rafel mendoza que quiere irse de vacaciones a Mar del Plata',
-        // foto: './img/LucianoGreco.jpeg'
-    // }
 ];
 
+function crearElementoYAregarContenido(elemento, arreglo){
 
-const main = document.querySelector('main');
+    for(let i of arreglo) {
 
-for(let i of listadoNoticias) {
-    const article = document.createElement('article'); // - creo <article>
+        // Crear el elemento <h2>
+        const h2 = document.createElement('h2'); 
+        h2.innerText = i.titulo; 
     
-    const h2 = document.createElement('h2'); // -------- creo <h2>
-    h2.innerText = i.titulo; //------------------------- ingreso el titulo
-
-    const img = document.createElement('img'); // ------- creo <img>
-    img.setAttribute('src', i.foto); //------------------ ingreso la imagen (objeto)
-
-    const p = document.createElement('p'); // -------- creo <p>
-    p.textContent = i.parrafo;
-
-    // Anidacion
-    main.appendChild(article);
-    article.appendChild(h2);
-    article.appendChild(img); 
-    article.appendChild(p);
+        // Crear el elemento <img>
+        const img = document.createElement('img'); 
+        img.setAttribute('src', i.foto);
     
+        // Crear el elemento <p>
+        const p = document.createElement('p');
+        p.textContent = i.parrafo;
+    
+        // Crear el elemento <article>
+        const article = document.createElement('article'); 
+        // Anidacion
+        elemento.appendChild(article);
+        article.appendChild(h2);
+        article.appendChild(img); 
+        article.appendChild(p);
+    }
 }
 
+const main = document.querySelector('.noticias');
+// crearElementoYAregarContenido(main, nuevasNoticias)
 
 
-/* CONSIGNA MESA DE TRABAJO                         
+
+
+
+/*  📚 CONSIGNA MESA DE TRABAJO ✅                        
 Antes de comenzar vamos a comentar la parte de PRACTICANDO ATRIBUTOS y PRACTICANDO CREACION DE NODOS.
 Una vez que solo tenemos el código comentado podemos empezar la practica. ✔
 
-    1- Debemos reutilizar el "listadoNoticias" para lograr el mismo resultado de crear los nodos dinamicamente.
+    1- Debemos reutilizar el "nuevasNoticias" para lograr el mismo resultado de crear los nodos dinamicamente.
     2- La diferencia ahora radica en utilizar un bucle y dentro del mismo utilizar la notación de Plantillas 
        Literales (con comillas invertidas -> ``)
     3- El resultado debe ser el mismo que en el caso anterior pero vamos a implementar el método innerHTML 
@@ -88,26 +103,63 @@ Una vez que solo tenemos el código comentado podemos empezar la practica. ✔
        Ejemplo: si quiero insertar un titulo en el body, haría los siguiente:
        document.querySelector('body').innerHTML += `<h1>Nuevo Título</h1>`; */
 
-function renderiazandoElementos(listadoNoticia){
-      // Selecciona el contenedor donde se insertarán los elementos
-      const main = document.querySelector('main');
+function renderiazandoElementos(elemento,arreglo){    
 
-      // Recorre el array de noticias
-      for (let i of listadoNoticia) {
-          // Crea la plantilla utilizando plantillas literales
-          let article = `
-              <article>
-                    <h2>${i.titulo}</h2>
-                    <img src="${i.foto}" alt="${i.titulo}">
-                    <p>${i.parrafo}</p>
-              </article>
-          `;
+    // OPCION 1 - for of - Distinta sintaxis 
+    //   // Recorre el array de noticias
+    //   for (let i of arreglo) {
+    //       //Crea la plantilla utilizando plantillas literales
+    //       let article = `
+    //           <article>
+    //                 <h2>${i.titulo}</h2>
+    //                 <img src="${i.foto}" alt="${i.titulo}">
+    //                 <p>${i.parrafo}</p>
+    //           </article>
+    //       `;
   
-          // Inserta la plantilla en el contenedor utilizando innerHTML
-          main.innerHTML += article;
-      }
+    //       // Inserta la plantilla en el contenedor utilizando innerHTML
+    //       elemento.innerHTML += article;
+    //   }   
+
+
+    // OPCION 2 - for of
+    for(let i of arreglo){
+        // Creamos un elemento div para contener la noticia
+        const elementoArticle = document.createElement('article');
+        elementoArticle.classList.add('noticia');
+
+        // Construimos la plantilla HTML utilizando la notación de Plantillas Literales
+        elementoArticle.innerHTML = `
+            <img src="${i.foto}" alt="${i.titulo}">
+            <h2>${i.titulo}</h2>
+            <p>${i.parrafo}</p>
+        `;
+
+        // Insertamos la noticia en el contenedor
+        elemento.appendChild(elementoArticle);
+    };
+
+
+        // OPCION 3 - forEach
+    // Iteramos sobre cada noticia en el array
+    // arreglo.forEach(i => {
+    //     // Creamos un elemento div para contener la noticia
+    //     const elementoArticle = document.createElement('article');
+    //     elementoArticle.classList.add('noticia');
+
+    //     // Construimos la plantilla HTML utilizando la notación de Plantillas Literales
+    //     elementoArticle.innerHTML = `
+    //         <img src="${i.foto}" alt="${i.titulo}">
+    //         <h2>${i.titulo}</h2>
+    //         <p>${i.parrafo}</p>
+    //     `;
+
+    //     // Insertamos la noticia en el contenedor
+    //     elemento.appendChild(elementoArticle);
+    // });
 }
-renderiazandoElementos(listadoNoticias);
+
+renderiazandoElementos(main, nuevasNoticias);
 
 
 
