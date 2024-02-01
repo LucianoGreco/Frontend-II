@@ -125,18 +125,18 @@ function renderiazandoElementos(elemento,arreglo){
     // OPCION 2 - for of
     for(let i of arreglo){
         // Creamos un elemento div para contener la noticia
-        const elementoArticle = document.createElement('article');
-        elementoArticle.classList.add('noticia');
+        const articulo = document.createElement('article');
+        articulo.classList.add('noticia');
 
         // Construimos la plantilla HTML utilizando la notación de Plantillas Literales
-        elementoArticle.innerHTML = `
+        articulo.innerHTML = `
             <img src="${i.foto}" alt="${i.titulo}">
             <h2>${i.titulo}</h2>
             <p>${i.parrafo}</p>
         `;
 
         // Insertamos la noticia en el contenedor
-        elemento.appendChild(elementoArticle);
+        elemento.appendChild(articulo);
     };
 
 
@@ -144,18 +144,18 @@ function renderiazandoElementos(elemento,arreglo){
     // Iteramos sobre cada noticia en el array
     // arreglo.forEach(i => {
     //     // Creamos un elemento div para contener la noticia
-    //     const elementoArticle = document.createElement('article');
-    //     elementoArticle.classList.add('noticia');
+    //     const articulo = document.createElement('article');
+    //     articulo.classList.add('noticia');
 
     //     // Construimos la plantilla HTML utilizando la notación de Plantillas Literales
-    //     elementoArticle.innerHTML = `
+    //     articulo.innerHTML = `
     //         <img src="${i.foto}" alt="${i.titulo}">
     //         <h2>${i.titulo}</h2>
     //         <p>${i.parrafo}</p>
     //     `;
 
     //     // Insertamos la noticia en el contenedor
-    //     elemento.appendChild(elementoArticle);
+    //     elemento.appendChild(articulo);
     // });
 }
 

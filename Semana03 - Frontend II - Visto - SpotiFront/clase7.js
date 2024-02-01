@@ -1,16 +1,19 @@
-
+// Obtener y colocar nombre de usuario
 function obtenerUsuario(){
     let nombre
 
-    do{ //Validar
-        nombre = prompt('Ingresá tu nombre: ');
-        // console.log(nombre);
-    }while(nombre == null || nombre.length < 3);
+    // Validar nombre
+    do{ 
+        // nombre = prompt('Ingresá tu nombre: ');
+        nombre = 'Luciano'
+        
+    }while(nombre == null || nombre.length < 3 || !isNaN(nombre));
 
     const nombreUsuario = document.querySelector('#nombreUsuario');
-    nombreUsuario.innerText = nombre
+    nombreUsuario.innerText = nombre;
 }
-//obtenerUsuario();
+obtenerUsuario();
+
 
 const albumesFamosos = [{
     // i = 0
@@ -57,8 +60,7 @@ const albumesFamosos = [{
 ];
 
 
-
-// Mostrar albunes
+// Mostrar o redenderizar albunes
 function renderizarAlbunes(albumesFamosos){
     const covers = document.querySelector('.covers');
     covers.innerHTML = ''
@@ -68,57 +70,57 @@ function renderizarAlbunes(albumesFamosos){
             <li id='${i.id}'>
                 <img src='${i.imagen}'>
                 <p>${i.nombre}</p>
-                <i id='${i.id}' class='fa fa-heart ${getFavorito(i)}'></i>
+                <i id='${i.id}' class='fa fa-heart  ${i.like ? 'favorito' : ''}'></i>
             </li>`;
     }
-    // <i class='fa fa-heart ${i.like ? 'favorito' : ''}'></i>
 
+    /* 
+    <i class='fa fa-heart ${getFavorito(i)}'></i> // Corazon Comentado
     function getFavorito(i){
         if(i.like){
             return 'favorito';
         }
         return '';
     }  
+    */
 }
 renderizarAlbunes(albumesFamosos)
 
 
 
-
-
-/* [3] FUNCION: mostrar datos del usuario 
+/*  📚 [3] FUNCION: mostrar datos del usuario ✅
 
 Dentro del div '.perfil' tenemos un parrafo con 2 span en los que debemos colocar
 correctamente su contenido.
 
 Para eso debemos hacer ciertos calculos y colocar esa info en el HTML. Debemos:
-    1- contar la cantidad de albumes del array y pintarlo en el span correspondiente
-    2- contar la cantidad de favoritos y pintarlo en el span correspondiente
+    1- contar la cantidad de albumes  y mostrarlo en el span correspondiente
+    2- contar la cantidad de favoritos y mostrarlo en el span correspondiente
     3- tener en cuenta: usar las palabra en plural o en singular, según cuando
-    sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos ) */
+    sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos ) */ 
 
 
-function mostrarDatosEnPerfil(listaObjetos) {
+function mostrarDatosEnPerfil(elemento) {
 
-    const cantidadAlbunes = document.querySelector('#cant-albums');
-    const cantidadFavoritos = document.querySelector('#cant-favoritos');
+    const albunes = document.querySelector('#cant-albums');
+    const favoritos = document.querySelector('#cant-favoritos');
 
-    const albunes = lista.length;
-    let favoritos = 0;
-
+    const cantidadAlbunes = elemento.length; // Cantidad de albunes
+    
     // for of = Array []
     // for in = objetos {}
-    for (let i in listaObjetos) {
-        if (listaObjetos[i].like) {
-            favoritos++;
+    let cantidadFavoritos = 0; // Cantidad de favoritos
+    for (let i in elemento) {
+        if (elemento[i].like) {
+            cantidadFavoritos++;
         }
     }
 
-    const albun = albunes === 1 ? 'álbum' : 'álbumes';
-    const favorito = favoritos === 1 ? 'favorito' : 'favoritos';
+    const textoAlbun = cantidadAlbunes === 1 ? 'álbum' : 'álbumes';
+    const textoFavorito = cantidadFavoritos === 1 ? 'favorito' : 'favoritos';
 
-    cantidadAlbunes.innerText = `${albunes} ${albun}`;
-    cantidadFavoritos.innerText = `${favoritos} ${favorito}`;
+    albunes.innerText = `${cantidadAlbunes} ${textoAlbun}`;
+    favoritos.innerText = `${cantidadFavoritos} ${textoFavorito}`;
 }
 mostrarDatosEnPerfil(albumesFamosos);
 
