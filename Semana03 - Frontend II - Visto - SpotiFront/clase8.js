@@ -87,7 +87,6 @@ function agregarQuitarFavorito(){
             let album = albumesFamosos.filter( i => i.id == corazon.id)[0]; // FUNCION FLECHA EXPRESADA ANONIMA
             album.like = !album.like
 
-
             /* EQUIVALENTE A filter() 
             function filterBy(album) {
               
@@ -127,12 +126,12 @@ Vamos a seguir las indicaciones que nos permiten lograrlo utilizando eventos.
         b.  for(let album of albumesFamosos){ if(album.id == boton.id){...} }*/
 
     /* Albunes:
-        Nevermind
-        Thriller
-        The wall
-        Abbey Road
-        Origin of Symmetry
-        Back in Black
+        1. Nevermind
+        2. Thriller
+        3. The wall
+        4. Abbey Road
+        5. Origin of Symmetry
+        6. Back in Black
     */
 
 
@@ -141,12 +140,15 @@ function eliminarAlbum() {
     // keydown: Captura los caracteres del teclado
     document.addEventListener('keydown', function(event) {
         
-        if (event.key === 'b') {
+        if (event.key === 'f') {
             const nombreAlbumEliminar = prompt('Ingrese el nombre del álbum que desea eliminar:');
-            // OPCION: N°1
-            //const index = albumesFamosos.findIndex(album => album.nombre === nombreAlbumEliminar);
 
-            // OPCION: N°2
+            // OPCION: N°1
+            const index = albumesFamosos.findIndex(album => album.nombre === nombreAlbumEliminar);
+
+            
+            // OPCION: N°2 
+            /*
             let index = -1; // Inicializamos el índice con un valor que indica que no se encontró el álbum
 
             for (let i in albumesFamosos) {
@@ -154,12 +156,12 @@ function eliminarAlbum() {
                     index = i; // Asignamos el índice si encontramos el álbum
                     break; // Salimos del bucle una vez que encontramos el álbum
                 }
-            }
-
+            }b
+            */
 
             if (index !== -1) {
 
-                albumesFamosos.splice(index, 4); // Remove the album at the found index
+                albumesFamosos.splice(index, 1); // Remove the album at the found index
                 //index:    índice del álbum desde donde se compienza a eliminar.
                 //1:        Cantidad de elementos a eliminar a partir del indice
                 
@@ -169,9 +171,10 @@ function eliminarAlbum() {
             else {
                 alert('Álbum no encontrado');
             }
+        
         }
     });
 }
-// eliminarAlbum();
+eliminarAlbum();
 
   

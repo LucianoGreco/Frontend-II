@@ -1,67 +1,66 @@
 // Funcion de orden superior - algunas:
-// filter()
-// forEach()
-// setInterval()
-// setTimeout()
+    // filter()
+    // forEach()
+    // setInterval()
+    // setTimeout()
 
 
-// itera y ejecuta la funcion de cada elemento
-albumesFamosos.forEach((element, index) => {
-    console.log(element);
-    console.log(index);
+// ForEach - Opcion 1
+albumesFamosos.forEach((element, i) => {
+    // console.log(element);
+    // console.log(i);
 });
 
-
-// EQUIVALENTE
+// ForEach - Opcion 2
+function unaFuncion(element, i){
+    // console.log(element);
+    // console.log(i);
+}
 albumesFamosos.forEach(unaFuncion);
-function unaFuncion(element, index){
-    console.log(element);
-    console.log(index);
-}
 
-// EQUIVALENTE
-for(let index = 0 ; index<albumesFamosos.length ; index++){
-    let element = albumesFamosos[index]
-}
 
+// for
+for(let i = 0 ; i<albumesFamosos.length ; i++){
+    let element = albumesFamosos[i]
+    // console.log(element);
+    // console.log(i);
+}
 
 // Funcion (closures)
-function outerFunction() {
-    let outerVariable = "Soy externa";
-  
-    function innerFunction() {
-      console.log(outerVariable);
+function functionExterna() {
+    let variableExterna = "variable externa";
+    function functionInterna() {
+      console.log('Funcion Interna llamando a la'+variableExterna);
     }
-  
-    return innerFunction;
-  }
+
+    return functionInterna();
+}
+// functionExterna() ;
 
 
-
-
-/*  setInterval() - REPITE LA EJECUCION 
-Ejecuta la funcion repetidamente en intervalos especificos
-    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ 
-
+//  a. setInterval() - Repite la ejecucion
+//  b. setTimeout() - Retarda la ejecucion (unica vez)
+//      Argumentos: funcion(){}, Tiempo(ms) 
+function repiteRetaza(){
+    // Repite
     let i = 0;
-    setInterval(()=>{
-        console.log('setInterval cada 1 segundno '+i);
+    setInterval(()=> {
+        console.log('setInterval repite '+i);
         i++;
     }, 1000); // 1000ms 
 
-
-/* setTimeout() - RETARDA LA EJECUCION POR UNICA VEZ
-Ejecuta la funcion despues de un tiempo (ms) determinado
-    Toma 2 argunmentos= setTimeout(funcion(){}, tiempo) */ 
-
-    setTimeout(() => {
-        console.log('setTimeOut 3 segudnos');
+    // Retarda
+    setTimeout( () => {
+        console.log('----- setTimeOut retarda');
     }, 3000);
+}
+// repiteRetaza()
 
 
 
 
-const planesMensuales = [{
+const planesMensuales = [
+    {
         tipo: "Básico",
         costo: 300,
         descripcion: "Podes escuchar música sin límites todo el mes."
@@ -79,79 +78,86 @@ const planesMensuales = [{
 ];
 
 
-let contador = 0;
-const footer = document.querySelector('footer');
 
-// load - Se ejecuta cuando las descargas, renderizado imágenes, estilos, y scripts allan sido completadas
-window.addEventListener('load', function(){
+function carrterlDinamico(){
 
-    const interval = setInterval(()=>{
+    const footer = document.querySelector('footer');
 
-        // Reseteo del contador al llegar a ultimo elemento
-        contador = contador % planesMensuales.length;
-        // EQUIVALENTE
-        // if(contador === planesMensuales.length){
-        //     contador = 0;
-        // }
-                
-        let plan = planesMensuales[contador]//posicion
+    let contador = 0;
 
-        footer.innerHTML = `
-            <p>Plan: ${plan.tipo}
-                <strong>
-                    ${plan.costo}
-                </strong>
-            </p>
-            <p>
-                ${plan.descripcion}
-            </p>
-        `;
-        contador++
-    }, 500); 
-
-    footer.addEventListener('dblclick', function(){
-        clearInterval(interval);
-        console.log('-----> finalizamos el intervlo');
+    // load - Ejecuta cuando todos los recursos allan sido completados
+    window.addEventListener('load', function(){
+    
+        const interval = setInterval( ()=>{
+    
+            // Reseteo del contador al llegar a ultimo elemento
+            contador = contador % planesMensuales.length;
+            
+            // reseteo equivalente
+            // if(contador === planesMensuales.length){
+            //     contador = 0;
+            // }
+                    
+            let i = planesMensuales[contador]//posicion
+    
+            footer.innerHTML = `
+                <p>
+                    Plan: ${i.tipo} <strong>${i.costo}</strong>
+                </p>
+                <p>
+                    ${i.descripcion}
+                </p>
+            `;
+            contador++
+        }, 2000); 
+    
+        footer.addEventListener('dblclick', function(){
+            
+            clearInterval(interval);
+            console.log('-----> finalizamos el intervlo');
+        })
     })
-})
+}
+
+carrterlDinamico()
+
+
 
 // Añadimos la escucha del doble click en el footer para frenar el inntervalo
 
 
-/*  MESA DE TRABAJO  
+/*  📚 MESA DE TRABAJO ✅
 
-Vamos a utilizar el setTimeout para preguntarle al usuario despues de unos segundos.
+    Vamos a utilizar el setTimeout para preguntarle al usuario despues de unos segundos.
 
-    1- Una vez cargada la página y pasados 12 segundos debemos preguntarle al usuario si desea
-       conocer más música (podemos usar un confirm).
-    2- Si el usuario confirma debemos abrir una nueva pestaña en -> https://open.spotify.com/
-    3- Si el usuario cancela debemos agregar un parrafo dentro del div '#perfil'(sin eliminar nada dentro)
-    4- El parrafo agregado debe ser de color verde y decir: "Usuario oficial de Spotifront"
-    5- Por ultimo, si ese parrafo es clickeado, debe mostrar una alerta al usuario que diga: 
-"Gracias por confiar en nosotros." */
+        1- Una vez cargada la página y pasados 12 segundos debemos preguntarle al usuario si desea
+            conocer más música (podemos usar un confirm).
+        2- Si el usuario confirma debemos abrir una nueva pestaña en -> https://open.spotify.com/
+        3- Si el usuario cancela debemos agregar un parrafo dentro del div '.perfil'(sin eliminar nada dentro)
+        4- El parrafo agregado debe ser de color verde y decir: "Usuario oficial de Spotifront"
+        5- Por ultimo, si ese parrafo es clickeado, debe mostrar una alerta al usuario que diga: 
+            "Gracias por confiar en nosotros." */
 
 
-const perfil = document.querySelector('.perfil'); 
+function redireccionarAMasContenido(){
+    window.addEventListener('load', function () {
+        setTimeout( () => {
+            const respuesta = confirm('¿Desea conocer más música?');
 
-// load: cargar - carga todos los elementos del html,css,js,img,url etc
-window.addEventListener('load', function () {
-    setTimeout(() => {
+            if(respuesta){
+                window.open('https://open.spotify.com/intl-es', '_blank')
+            }else{
+                const perfil = document.querySelector('.perfil');
+                perfil.innerHTML += '<p class="parrafo" style="color: green; font-size: 30px">Usuario oficial de spotifront 😎<p>'
+                const parrafo = document.querySelector('.parrafo');
+                parrafo.addEventListener('click',() => alert('Gracias por confiar en nosotros.'));
+            }
+        },1000);
+    })
+}
+redireccionarAMasContenido()
 
-        let confirmar = window.confirm('¿Desea conocer más música?'); 
 
-        if (confirmar) {
-            window.open('https://open.spotify.com/', '_blank'); 
-
-        } else {
-            perfil.innerHTML += '<p class="parrafo" style="color: green">Usuario oficial de Spotifront</p>';
-            const parrafo = document.querySelector('.parrafo');
-
-            parrafo.addEventListener('click', function () {
-                alert('Gracias por confiar en nosotros.');
-            });
-        }
-    }, 12000); 
-});
 
 
 /*
