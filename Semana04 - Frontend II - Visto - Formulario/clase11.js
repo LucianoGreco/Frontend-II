@@ -6,14 +6,17 @@
 const formulario = document.querySelector('form')
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault(); // No termine de ocurrir el evento submit
+    e.preventDefault(); // perdure el evento y no se valla rapido
+    // console.log(e);
+
+
     capturarDatos()
 });
 
 
 function capturarDatos(){
 
-    const objetoInformacion = {
+    const informacionCapturada = {
         nombre: '',
         password: '',
         telefono: '',
@@ -22,64 +25,82 @@ function capturarDatos(){
     }
 
     // Obtener Nombre
-    objetoInformacion.nombre = document.querySelector('#nom').value;
+    informacionCapturada.nombre = document.querySelector('#nom').value;
     // Obtener Contraseña
-    objetoInformacion.pass = document.querySelector('#pass').value;
+    informacionCapturada.password = document.querySelector('#pass').value;
     // Obtener Telefono
-    objetoInformacion.tel = document.querySelector('#tel').value;
+    informacionCapturada.telefono = document.querySelector('#tel').value;
 
+   
+    
     // Obtener Hobbies
     const hobbies = document.querySelectorAll('[name=hobbies]');
 
         //Opcion 1 - Recorro lo check en buscando de los true
-        hobbies.forEach(check => {
-            if(check.checked){
-                //objetoInformacion.checkList.push(check); 
-            }
-        }) 
+        
+            // hobbies.forEach(i => {
+            //     if(i.checked){ // checked retorna un true o false
+            //         console.log(i.id); 
+            //         informacionCapturada.hobbies.push(i.id)
+            //     }
+            // }) 
+        
+  
+    
+            // Opcion 2
+                // let lista = Array.from(hobbies); // Array.from() convierte el elemento NodeListOf<> en un Array[]
 
-        // Opcion 2
-        let lista = Array.from(hobbies); // Array.from() convierte el elemento NodeListOf<> es un Array[]
-            // 2.a.
-            objetoInformacion.hobbies = lista.filter(hobby => hobby.checked) // filtra los (chekc.checked == true)
-            // 2.b.
-            for(let i of lista.filter(hobby => hobby.checked)){ 
-                objetoInformacion.hobbies.push(i.id);
-            } 
+            // 2.a. for(variablesFiltrada)
+                // informacionCapturada.hobbies = lista.filter(i => i.checked) // filtra los (chekc.checked == true)
+                // for(let i of informacionCapturada.hobbies){
+                //      console.log(i.id);
+                //      informacionCapturada.hobbies.push(i.id);
+                // } 
 
-        // Opcion 3
-        objetoInformacion.hobbies = Array.from(hobbies).filter(hobby => hobby.checked).map(hobbyFiltrado => {
-            console.log(hobbyFiltrado.id);
-            return hobbyFiltrado.id
-        }); 
+            // 2.b. for(filtro)
+                // for(let i of lista.filter(hobby => hobby.checked)){ 
+                //     console.log(i.id);
+                //     informacionCapturada.hobbies.push(i.id);
+                // } 
+        
+
+
+    // Opcion 3
+    informacionCapturada.hobbies = Array.from(hobbies).filter(i => i.checked).map(hobbyFiltrado => {
+        console.log(hobbyFiltrado.id);
+        return hobbyFiltrado.id
+    }); 
+
+
 
 
     // Obtener Nacionalidad 
     const nacionalidad = document.querySelectorAll('[name=nacionalidad]');
 
+
         // Opcion 1 - Recorro lo check en buscando de los true
-        nacionalidad.forEach(nacion => {
-            if (nacion.checked){
-                objetoInformacion.nacionalidad = nacion.id;
-            }
-        }) 
+        // nacionalidad.forEach(i => {
+        //     if (i.checked){
+        //         // console.log(i.id);
+        //         informacionCapturada.nacionalidad = i.id;
+        //     }
+        // }) 
 
-        // Opcion 2
-        objetoInformacion.nacionalidad = Array.from(nacionalidad)
+    
+    
 
-        .filter(nacion => nacion.checked) 
-        console.log(nacion)
+    // Opcion 2
+    informacionCapturada.nacionalidad = Array.from(nacionalidad).filter(i => i.checked).map(nacionFiltered => {
+        console.log(nacionFiltered.id);
+        return nacionFiltered.id
+    });
 
-        .map(nacionFiltered => {
-            console.log(nacionFiltered.id);
-            return nacionFiltered.id
-        });
 
-    //console.log(objetoInformacion);
-    //  return objetoInformacion;
+    console.log(informacionCapturada);
+    return informacionCapturada;
 }
 
-
+/*
 
 let prueba = ['Luciano', 'Gabriel', 'Greco', 'Luciano'];
 
@@ -111,7 +132,7 @@ Entonces dentro de esta función vamos a chequear ciertas validaciones.
     5- Si la lista de hobbies tiene más de 4 items, sumar el error: "Sólo es posible seleccionar 4 hobbies."
     5- Si no hay una nacionalidad definida, sumar el error: "Debe seleccionar una nacionalidad." */
 
-
+/*
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -179,4 +200,4 @@ function validarInformacion(usuarioInformacion) {
     }
 
     return errores;
-} 
+} */
