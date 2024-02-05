@@ -1,3 +1,11 @@
+const estadoErroresOk = { // Arreglo de boleanos
+    email: false,
+    password: false,
+    rol: false,
+    terminos: false
+};
+
+
 const estadoUsuario = {
     email: '',
     password: '',
@@ -6,115 +14,121 @@ const estadoUsuario = {
 };
 
 
-const estadoErroresOk = {
-    email: false,
-    password: false,
-    rol: false,
-    terminos: false
-};
 
 
 // CAPTURAMOS EL EVENTO
-const formulario = document.querySelector('form'); //form
-formulario.addEventListener('change', () => {
+const formulario = document.querySelector('form'); // 1.Capturar el formulario
+formulario.addEventListener('change', () => { // 2.Agrega un evento al formulario
 
-    // Validando email formulario
-    const inputEmail = document.querySelector('#email');
-    estadoErroresOk.email = isValidEmail(inputEmail.value); // Verifica el email
-    estadoUsuario.email = inputEmail.value; // Guarda el email
+    // Capturamos los datos 
+    const email     = document.querySelector('#email');
+    const password  = document.querySelector('#password');
+    const rol       = document.querySelector('#rol');
+    const terminos  = document.querySelector('#terminos');
 
-    // Validando password formulario
-    const inputPassword = document.querySelector('#password');
-    estadoErroresOk.password = isValidPassword(inputPassword.value);
-    estadoUsuario.password = inputPassword.value;
 
-    // Validando Rol
-    const inputRol = document.querySelector('#rol');
-    estadoErroresOk.rol = isValidRol(inputRol.value);
-    estadoUsuario.rol = inputRol.value;
+    // Validacion de datos correctos - Booleano
+    estadoErroresOk.email       = EsValidoEmail      (email.value); // Verifica el email
+    estadoErroresOk.password    = EsValidoPassword   (password.value);
+    estadoErroresOk.rol         = EsValidoRol        (rol.value);
+    estadoErroresOk.terminos    = EsValidoTerminos   (terminos.checked);
 
-    // Validando Terminos
-    const inputTerminos = document.querySelector('#terminos');
-    estadoErroresOk.terminos = isValidTerminos(inputTerminos.checked)
-    estadoUsuario.terminos = inputTerminos.checked
+    console.log(estadoErroresOk.email );
+
+    // Guardar datos validados -
+    estadoUsuario.email         = email; 
+    estadoUsuario.password      = password;
+    estadoUsuario.rol           = rol;
+    estadoUsuario.terminos      = terminos
+
 
     mostrarMensajeDeErrores(estadoErroresOk);
+    
 });
 
-// CREAMOS LAS VALIDACIONES DE DATOS
-// Validacion email
-function isValidEmail(email){
-    /* Expresion regular: Patron de busqueda (caracteres)
-    let mail = 'texto@texto.texto';
-        'texto   = [a-z0-9]
-        @texto  = @[a-z]
-        .texto' = .[a-z]{2,3} */
-    let regexEmail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
-    return regexEmail.test(email);
+
+// Validacion
+function EsValidoEmail(email){
+    /* Expresion Regular 
+            let mail = 'texto@texto.texto'; -> Patron de busqueda 
+                    'texto  = [a-z0-9]
+                    @texto  = @[a-z]
+                    .texto' = .[a-z]{2,3} */
+    let patronDeBusqueda = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
+    return patronDeBusqueda.test(email);
 }
-// Validacion password
-function isValidPassword(password){  
+
+function EsValidoPassword(password){  
      return password.length > 3;
 }
-// Validacion rol
-function isValidRol(rol){
+
+function EsValidoRol(rol){
     return rol==='frontend' || rol==='backend';
 }
-// Validacion terminos
-function isValidTerminos(terminos){
+
+function EsValidoTerminos(terminos){
     return terminos === true;
 }
 
 
-// FUNCION QUE RENDERIZA LOS ERRORES
-function mostrarMensajeDeErrores1(estadoErrores){
+
+// Opcion 1 - Renderizar errores
+function mostrarMensajeDeErrores(estadoErroresOk){
     
     // Error email
-    if(estadoErrores.email){
-        document.querySelector('#emailError').classList.remove('visible');
+    if(estadoErroresOk.email){
+        document.querySelector('#emailError').classList.remove('visible'); // Si no hay error
     }else{
-        document.querySelector('#emailError').classList.add('visible');
+        document.querySelector('#emailError').classList.add('visible'); // Si hay error
     }
 
     // Error password
-    if(estadoErrores.password){
+    if(estadoErroresOk.password){
         document.querySelector('#passwordError').classList.remove('visible');
     }else{
         document.querySelector('#passwordError').classList.add('visible');
     }
 
     // Error rol
-    if(estadoErrores.rol){
+    if(estadoErroresOk.rol){
         document.querySelector('#rolError').classList.remove('visible');
     }else{
         document.querySelector('#rolError').classList.add('visible');
     }
 
     // Error terminos
-    if(estadoErrores.terminos){
+    if(estadoErroresOk.terminos){
         document.querySelector('#terminosError').classList.remove('visible');
     }else{
         document.querySelector('#terminosError').classList.add('visible');
     }
 }
 
-// Metodo Optimizado por el chatgpt
-function mostrarMensajeDeErrores(estadoErrores) {
+
+
+// Opcion 2 - Renderizar errores 
+/*
+function mostrarMensajeDeErrores2(estadoErroresOk) {
+
     const errores = ['email', 'password', 'rol', 'terminos'];
 
     errores.forEach(error => {
-        const elementoError = document.querySelector(`#${error}Error`);
+        const elementoError = document.querySelector(`#${error}Error`); // id="emailError"
 
-        if (estadoErrores[error]) {
+        if (estadoErroresOk[error]) {
             elementoError.classList.remove('visible');
         } else {
             elementoError.classList.add('visible');
         }
     });
 }
+*/
 
-const inputEmail = document.querySelector('#email');
-inputEmail.addEventListener('keypress', (e) => {
+
+
+// Bloqueamos caracteres no validos
+
+email.addEventListener('keypress', (e) => {
 
     //const caractersInvalidosA = [',','!','#'];
     const caractersInvalidosB = ',!#';
@@ -126,11 +140,12 @@ inputEmail.addEventListener('keypress', (e) => {
     }
 })
 
-/*  [5] FUNCION: Formulario completado con éxito 
+
+
+/*  📚 [5] FUNCION: Formulario completado con éxito ✅
 
 Esta funcion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
 Para eso debera cumplir con los siguientes requerimientos.
-    
     
     1 - Deshabilitar el boton del formulario miestra se complete el total del formulario.
     2 - Una vez completado el formulario al dar click en el boton Esperar 3 segundos para redireccionar a la página de 'usuario.html'
@@ -138,12 +153,23 @@ Para eso debera cumplir con los siguientes requerimientos.
     4 - Cuando vaya a la página de 'usuario.html' NO se debe permitir que mediante el 
         botón de "Atrás"(la flechita del navegador) el usuario vuelva a index. */
 
+
+
 function navegarPaginaExito() {
+
+    
     const boton = document.querySelector('button');
     const formulario = document.querySelector('form');
 
     // Deshabilitar el botón al inicio si los campos están vacíos
     boton.disabled = true;
+
+    if(){
+        
+    }
+
+
+
 
     // Deshabilitar el botón mientras se completa el formulario
     formulario.addEventListener('input', () => {
@@ -173,5 +199,6 @@ function navegarPaginaExito() {
     });
 }
 
-navegarPaginaExito();
 
+
+navegarPaginaExito()

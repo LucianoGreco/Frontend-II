@@ -1,18 +1,21 @@
-function mostrarValidaciones(errores){
+
+function mostrarValidaciones(listaErrores){ // Ingresa el listado de errores
 
     const contenedorErrores = document.querySelector('.errores');
     contenedorErrores.innerHTML = ''; // Limpiamos el contenedor
 
-    errores.forEach((error, i) => {
+    
+    listaErrores.forEach((error, i) => {
 
-        /* Opcion 1
+        /* Opcion 1 
         if(i % 2 == 0){
-            contenedorErrores.innerHTML += `<li class="red">${error}</li>`;
+            contenedorErrores.innerHTML += `<li class="red">${error}</li>`; // error rojo, error azul,....
         }else{
-            contenedorErrores.innerHTML += `<li class="blue">${error}</li> `;
+            contenedorErrores.innerHTML += `<li class="blue">${error}</li> `; 
         } */
 
-        // Opcion 2.a 
+        
+        // Opcion 2.a - Operador Ternario
         let clase = i % 2 == 0 ? 'red' : 'blue';
         contenedorErrores.innerHTML += `<li class="${clase}"> ${error}</li>`; 
 
@@ -24,10 +27,10 @@ function mostrarValidaciones(errores){
             </strong>
         </li>        
     `; */
-    });
+    }); 
 }
 
-/*  [5] FUNCION: Formulario completado con éxito
+/*  📚 [5] FUNCION: Formulario completado con éxito ✅
 
 Esta funcion se va a encargar de mostrar que el formulario se completó correctamente.
 Para eso debera cumplir con los siguientes requerimientos.
@@ -39,28 +42,30 @@ Para eso debera cumplir con los siguientes requerimientos.
     4 - a su vez se debe deshabilitar el boton del formulario
     5 - finalmente pasados 4 segundos: se debe eliminar esa caja, habilitar el boton y limpiar el formulario */
 
-function mostrarMensajeExito(errores) {
-    //   desarrollar la funcion aqui
+
+function mostrarMensajeExito(ListaErrores) {
 
     const contenedorFinal = document.querySelector('.mensajeFinal');
     contenedorFinal.innerHTML = ''; // Limpiamos el contenedor
 
-    const boton = document.querySelector('button') 
+    const boton = document.querySelector('button')
 
-    if (errores.length === 0) {
-        contenedorFinal.innerHTML += `<p class="green">¡Formulario completado con éxito!</p>`;
+    if (ListaErrores.length === 0) {
 
-        // boton.disabled = true
-        // Ocultar el botón en lugar de eliminarlo
-        boton.style.display = 'none';
+        contenedorFinal.innerHTML += `<p class="green">¡Formulario completado con éxito!</p>`;       
+         
+
+        boton.disabled = true; // Le agrega tranparencia
+        // boton.style.display = 'none';// oculta el boton
 
         setTimeout(() => {
-            // boton.disabled = false;
-            boton.style.display = 'block';
-            formulario.reset();
-            contenedorFinal.innerHTML = '';
-            
-        }, 4000); 
 
+            boton.disabled = false; // Le quita la transparencia
+            // boton.style.display = 'block'; // Muestra el boton
+
+            formulario.reset(); // resetea el formulario
+
+            contenedorFinal.innerHTML = ''; // Limpiamos el contenedor
+        }, 4000); 
     }
 }
