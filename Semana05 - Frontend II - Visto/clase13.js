@@ -2,15 +2,15 @@ const estadoErroresOk = { // Arreglo de boleanos
     email: false,
     password: false,
     rol: false,
-    terminos: false
+    terminos: 'false'
 };
 
-
+// USER
 const estadoUsuario = {
     email: '',
     password: '',
     rol: '',
-    terminos: false
+    terminos: ''
 };
 
 
@@ -18,58 +18,57 @@ const estadoUsuario = {
 
 // CAPTURAMOS EL EVENTO
 const formulario = document.querySelector('form'); // 1.Capturar el formulario
+const boton = document.querySelector('button');
+
+
 formulario.addEventListener('change', () => { // 2.Agrega un evento al formulario
 
+
     // Capturamos los datos 
-    const email     = document.querySelector('#email');
-    const password  = document.querySelector('#password');
-    const rol       = document.querySelector('#rol');
-    const terminos  = document.querySelector('#terminos');
+    const email     = document.querySelector('#email').value;
+    const password  = document.querySelector('#password').value;
+    const rol       = document.querySelector('#rol').value;
+    const terminos  = document.querySelector('#terminos').value;
 
 
     // Validacion de datos correctos - Booleano
-    estadoErroresOk.email       = EsValidoEmail      (email.value); // Verifica el email
-    estadoErroresOk.password    = EsValidoPassword   (password.value);
-    estadoErroresOk.rol         = EsValidoRol        (rol.value);
-    estadoErroresOk.terminos    = EsValidoTerminos   (terminos.checked);
+    estadoErroresOk.email       = esValidoEmail      (email); // Verifica el email
+    estadoErroresOk.password    = esValidoPassword   (password);
+    estadoErroresOk.rol         = esValidoRol        (rol);
+    estadoErroresOk.terminos    = esValidoTerminos   (terminos);
 
-    console.log(estadoErroresOk.email );
-
+    
     // Guardar datos validados -
     estadoUsuario.email         = email; 
     estadoUsuario.password      = password;
     estadoUsuario.rol           = rol;
     estadoUsuario.terminos      = terminos
 
-
+   
     mostrarMensajeDeErrores(estadoErroresOk);
     
 });
 
 
 // Validacion
-function EsValidoEmail(email){
+function esValidoEmail(email){
     /* Expresion Regular 
             let mail = 'texto@texto.texto'; -> Patron de busqueda 
                     'texto  = [a-z0-9]
                     @texto  = @[a-z]
-                    .texto' = .[a-z]{2,3} */
+                    .texto' = .[a-z]{2,3} */ 
     let patronDeBusqueda = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
     return patronDeBusqueda.test(email);
 }
-
-function EsValidoPassword(password){  
-     return password.length > 3;
+function esValidoPassword(password){  
+    return password.length > 3;
 }
-
-function EsValidoRol(rol){
-    return rol==='frontend' || rol==='backend';
+function esValidoRol(rol){
+    return rol ==='frontend' || rol==='backend';
 }
-
-function EsValidoTerminos(terminos){
+function esValidoTerminos(terminos){
     return terminos === true;
 }
-
 
 
 // Opcion 1 - Renderizar errores
@@ -105,7 +104,6 @@ function mostrarMensajeDeErrores(estadoErroresOk){
 }
 
 
-
 // Opcion 2 - Renderizar errores 
 /*
 function mostrarMensajeDeErrores2(estadoErroresOk) {
@@ -125,13 +123,11 @@ function mostrarMensajeDeErrores2(estadoErroresOk) {
 */
 
 
-
 // Bloqueamos caracteres no validos
-
 email.addEventListener('keypress', (e) => {
 
     //const caractersInvalidosA = [',','!','#'];
-    const caractersInvalidosB = ',!#';
+    const caractersInvalidosB = ',!#"$%&/()=?¿!°¡'; // Todo lo que esta entre las comillas simples son caracteres invalidos
 
     // keypress: captura el caracter que se presiona
     if(caractersInvalidosB.includes(e.key)){
@@ -147,32 +143,24 @@ email.addEventListener('keypress', (e) => {
 Esta funcion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
 Para eso debera cumplir con los siguientes requerimientos.
     
-    1 - Deshabilitar el boton del formulario miestra se complete el total del formulario.
+    ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+    ❌ 1 - Deshabilitar el boton del formulario miestra se complete el total del formulario. ❌
+    ❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+
     2 - Una vez completado el formulario al dar click en el boton Esperar 3 segundos para redireccionar a la página de 'usuario.html'
     3 - Durante ese tiempo el boton deshabilitado debe mostrar el texto: "Cargando..."
     4 - Cuando vaya a la página de 'usuario.html' NO se debe permitir que mediante el 
-        botón de "Atrás"(la flechita del navegador) el usuario vuelva a index. */
-
-
+        botón de "Atrás"(la flechita del navegador) el usuario vuelva a index. */ 
+        
 
 function navegarPaginaExito() {
 
-    
-    const boton = document.querySelector('button');
-    const formulario = document.querySelector('form');
-
     // Deshabilitar el botón al inicio si los campos están vacíos
-    boton.disabled = true;
+    boton.disabled = true;      
 
-    if(){
-        
-    }
-
-
-
-
+    
     // Deshabilitar el botón mientras se completa el formulario
-    formulario.addEventListener('input', () => {
+    formulario.addEventListener('change', () => {
         boton.disabled = !formulario.checkValidity(); // verifica si todos los elementos dentro del formulario son válidos
     });
 
@@ -188,8 +176,11 @@ function navegarPaginaExito() {
         // Simular el envío del formulario y esperar 3 segundos antes de redireccionar
         setTimeout(() => {
 
-            // sessionStorage.setItem('USER', JSON.stringify(estadoUsuario));
+
+            // Guarda los datos del localStorage en un objeto
+        //  sessionStorage                   .stringify - Transforma objeto a string
             localStorage.setItem('USER', JSON.stringify(estadoUsuario));
+      
 
             
             // window.location.href = 'usuario.html'; - Redirección a la página de éxito
@@ -198,7 +189,6 @@ function navegarPaginaExito() {
         }, 3000);
     });
 }
-
 
 
 navegarPaginaExito()

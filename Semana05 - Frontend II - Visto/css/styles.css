@@ -90,6 +90,15 @@ form button:disabled {
     visibility: visible;
 }
 
+.boton{
+    padding: 5px 20px ;
+    background-color: blue;
+    color: white;
+    margin: 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
 
 /* -------------------------------- page user ------------------------------- */
 .user {
