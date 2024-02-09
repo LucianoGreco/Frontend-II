@@ -30,6 +30,7 @@ const URL_BASE = 'https://jsonplaceholder.typicode.com'; // API
 function consultarApi(endpoint, renderizarElementos, ocultarBoton) {
     
     fetch(`${URL_BASE}/${endpoint}`)
+    // Consulta
         .then(respuesta => {
             if (!respuesta.ok) {
                 err = `ERROR: Error al CONSULTAR la API: ${respuesta.status}`
@@ -41,6 +42,7 @@ function consultarApi(endpoint, renderizarElementos, ocultarBoton) {
                 renderizarElementos(json);
                 ocultarBoton()
             })
+    // Consumo            
         .catch(error => { 
             err = 'Error al CONSUMIR la api'
             const contenedorComentarios = document.querySelector('.comentario');
@@ -48,13 +50,32 @@ function consultarApi(endpoint, renderizarElementos, ocultarBoton) {
         });
 }
 
-function renderizarElementos(listado) {
-    
-    // OPCION for each ------------------
-    const comentariosHTML = [];
+
+function renderizarElementos(listadoApi) {   
+    // Obtener solo los primeros 10 comentarios
+    const primeros10Comentarios = listadoApi.slice(0, 10);
+
+    // Mapear los comentarios a HTML
+    const comentariosHTML = primeros10Comentarios.map(comentario => `
+        <div class="comentario">
+            <h4>${comentario.email}</h4>
+            <p>${comentario.body}</p>
+        </div>
+    `); 
+
+    // Insertar los comentarios en el contenedor
+    const contenedorComentarios = document.querySelector('.comentario');
+    const contenidoHTML = comentariosHTML.join('');
+    contenedorComentarios.innerHTML = contenidoHTML;
+
+
+
+// OPCION for each ------------------
+    /* const comentariosHTML = [];
     
     let contador = 0;
-    listado.forEach(comentario => {
+
+    listadoApi.forEach(comentario => {
         if (contador >= 10) {
             return; // Salir del bucle después de 10 comentarios
         }
@@ -65,34 +86,23 @@ function renderizarElementos(listado) {
             </div>
         `);
         contador++; 
-    });
-    
-    
-    const contenidoHTML = comentariosHTML.join('');
-    const contenedorComentarios = document.querySelector('.comentario');
-    contenedorComentarios.innerHTML = contenidoHTML;
-    
-// OPCION map() ------------------
-    /*  const comentariosHTML = listado.map(comentario => `
-            <div class="comentario">
-                <h4>${comentario.email}</h4>
-                <p>${comentario.body}</p>
-            </div>
-        `); */
+    }); */
+        
+
 
 // OPCION for() ------------------
     /*  for (let i = 0; i < 10; i++) {
         comentariosHTML.push(`
-        <div class="comentario">
-        <h4>${listado[i].email}</h4>
-                <p>${listado[i].body}</p>
+            <div class="comentario">
+                <h4>${listadoApi[i].email}</h4>
+                <p>${listadoApi[i].body}</p>
             </div>
         `);
     }; */
 
 // OPCION for of ------------------
     /*  let contador = 0;
-        for (const comentario of listado) {
+        for (const comentario of listadoApi) {
             if (contador >= 10) {
                 break; // Salir del bucle después de 10 comentarios
             }
@@ -114,7 +124,10 @@ function ocultarBoton() {
     boton.style.display = 'none';
 }
 
+
+
 const boton = document.querySelector('button');
+
 boton.addEventListener('click', function () {
-    consultarApi('commentsi', renderizarElementos, ocultarBoton);
+    consultarApi('comments', renderizarElementos, ocultarBoton);
 });

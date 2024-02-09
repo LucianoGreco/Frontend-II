@@ -1,16 +1,10 @@
 /*
-NOTA:
-
-
 ESCRITURA: JSON
-
     Body 
         raw
             {"nombre":"prueba","ciudad":"BS AS"}
 
-
 lECTURA:
-
     Error: Espera un texto plano:
         Header:
             key:            Value:
@@ -19,7 +13,6 @@ lECTURA:
                 Body
                     Pretty
                         { "id":101 }
-
                     
     Solucion: Debemos indicarle que es un json: ENDPOINT espera JSON
         Header:
@@ -32,111 +25,83 @@ lECTURA:
                         "nombre": "prueba",
                         "ciudad": "BS AS",
                         "id": 101
-                        }
-            
+                        }         
 */
 
 
 
-// const URL_BASE = 'https://jsonplaceholder.typicode.com';
+const URL_BASE = 'https://jsonplaceholder.typicode.com';
 
 // Se ejecutan el hilo principal y despues las promesas
-/*
+
+// OPCION 1 - EJECUCION ASINCRONICA: flujo de ejecucion en paralelo o en un orden diferente
 function llamarApi(usuario){
 
     const configuraciones = {
-        method: 'POST',
-        body: JSON.stringify(usuario),
-        headers: {
-            'Content-Type':'application/json'
+        method: 'POST', // Metodo Post
+        body: JSON.stringify(usuario), // transformamos el objeto usuario a un json
+        headers: {  // Headers: espera un texto plano
+            'Content-Type':'application/json' // Debemos indicarle que espere un JSON
         }
- 
     };
 
     fetch(`${URL_BASE}/posts`, configuraciones)
+        // .then(respuesta => console.log(respuesta.status)); // 201 Creader
         .then(respuesta => respuesta.json()) // Recibe la respuesta del servidor y la convierte en un JSON
         .then(respuestaJson => console.log(respuestaJson)); // lee el json
 
-    console.log('Ejecucion Hilo Principal');
+    console.log('Esperando respueta...'); // Se ejecuta el hilo principal
 }
-*/
+ 
+// OPCION 2 - EJECUCION SINCRONICA: flujo de ejecucion lineal o secuencial
+async function llamarApiConAwait(usuario){
 
-
-
-
-
-
-/* MESA
-Valiendose de la documentacion y el trabajo en clase, deberan lograr crear un usaurio
-    en la API y obtener su token.
-Este proceso puede realizarse a travez de la herramienta postman, o si ya lo prefieren 
-    desde un script.
-Documentación: https://todo-api.ctd.academy/#/ */ /*
-
-
-const URL_BASE = 'https://jsonplaceholder.typicode.com';
-
-
-document.querySelector('button').addEventListener('click', function(){
-    // const usuario = {nombre:'prueba', ciudad: 'BS AS'}
-    // //llamarApi(usuario);
-    // pruebaConAwait(usuario)
-
-    const usuario = {nombre: 'Luciano', apellido: 'Greco', DNI: '35623054'}
-    registrarUsuario(usuario)
-})
-
-
-// async / await - Secuencial
-async function pruebaConAwait(usuario){
     const configuraciones = {
-        method: 'POST',
-        body: JSON.stringify(usuario),
-        headers: {
-            'Content-Type':'application/json'
+        method: 'POST', // Metodo Post
+        body: JSON.stringify(usuario), // transformamos el objeto usuario a un json
+        headers: {  // Headers: espera un texto plano
+            'Content-Type':'application/json' // Debemos indicarle que espere un JSON
         }
     };
 
-    const respuesta = await fetch(`${URL_BASE}/posts`, configuraciones);
-        const respuestaJson = await respuesta.json();
-        console.log(respuestaJson);
 
-        console.log('Ejecucion secuencial');
+//  const respuesta = await (Lo mismo que la funcion llamar api)
+    const respuesta = await fetch(`${URL_BASE}/posts`, configuraciones);
+    const respuestaJson = await respuesta.json();
+    console.log(respuestaJson);
 }
 
+// Ejecución CONCURRENTE ASINCRONIC: Tareas se ejecutan en paralelo pero finalizan en orden 
+// Ejecución CONCURRENTE SINCRONICA: Tareas se ejecutan en paralelo pero pueden finalizan en diferente orden
 
-async function registrarUsuario(usuario) {
-    try {
-        const configuraciones = {
-            method: 'POST',
-            body: JSON.stringify(usuario),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
 
-        const respuesta = await fetch(`${URL_BASE}/posts`, configuraciones);
-        const respuestaJson = await respuesta.json();
+const usuario = {
+    nombre : 'Luciano',
+    ciudad: 'San Rafael'
+}
 
-        if (respuesta.ok) {
-            console.log(respuestaJson);
-            console.log('Usuario registrado exitosamente');
-            console.log('Token:', respuesta.token);
-        } else {
-            console.error('Error al registrar usuario:', respuesta.error);
-        }
-    } catch (error) {
-        console.error('Error de red:', error);
-    }
-} */
+const boton = document.querySelector('button');
+
+boton.addEventListener('click', function(){
+    // llamarApi(usuario)
+    // llamarApiConAwait(usuario)
+})
 
 
 
-// PROFE:
-const URL_BASE = 'https://jsonplaceholder.typicode.com';
 
-function llamarApi(){
-    fetch(`${URL_BASE}/posts`)
+/* 📚 MESA DE TRABAJO ✅
+    Valiendose de la documentacion y el trabajo en clase, deberan lograr crear un usaurio
+        en la API y obtener su token.
+    Este proceso puede realizarse a travez de la herramienta postman, o si ya lo prefieren 
+        desde un script.
+
+Documentación: https://todo-api.ctd.academy/#/ */ 
+
+
+// Awai
+function llamarTodoApi(){
+    
 }
 
 
