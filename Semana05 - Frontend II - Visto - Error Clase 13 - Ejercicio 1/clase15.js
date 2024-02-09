@@ -76,24 +76,16 @@ const arrayObjetoMap = arrayObjeto.map(i => {
 
 /* ✅ MESA DE TRABAJO 📚
 
-1. levantar el objeto desde el localStorage con key=LISTADO
+    1. levantar el objeto desde el localStorage con key=LISTADO
+    2. Devolver un array con nombre, apellido y edad(calculado) 
+        de las personas mayores de 18 años (hay que usar map y filter)
+    3. Este array debe decir la edad de la persona
+    4. Volver a guardar en localStorage bajo el mismo key
+    5. Mostrar por consola el resultado, asegurandose de que sea 
+        el requerido */
 
-2. Devolver un array con nombre, apellido y edad(calculado) 
-    de las personas mayores de 18 años (hay que usar map y filter)
-
-3. Este array debe decir la edad de la persona
-4. Volver a guardar en localStorage bajo el mismo key
-5. Mostrar por consola el resultado, asegurandose de que sea 
-    el requerido 
-*/
-
-// localStorage.setItem('LISTADO',
-// '[{"nombre":"Pedro","apellido":"Gomez","nacimiento":"11/05/1985"}]')
-
-
-//1.
+// Parte del ejercicio
 localStorage.setItem('LISTADO','[{"nombre":"Pedro","apellido":"Gomez","nacimiento":"11/05/1985"},{"nombre":"Joaquin","apellido":"Sotto","nacimiento":"21/10/1985"},{"nombre":"Gabriela","apellido":"Perez","nacimiento":"02/02/2010"},{"nombre":"Agustina","apellido":"Estevez","nacimiento":"21/08/1986"},{"nombre":"Paola","apellido":"Serra","nacimiento":"22/09/2009"},{"nombre":"Juan","apellido":"Coprez","nacimiento":"12/04/1977"}]')
-
 
 
 // 1. Levantar el objeto desde el localStorage con key=LISTADO
@@ -102,47 +94,36 @@ const objeto = JSON.parse(json); // Object
 // console.log(objeto);
 
 /*
-0: {nombre: 'Pedro', apellido: 'Gomez', nacimiento: '11/05/1985'}
-1: {nombre: 'Joaquin', apellido: 'Sotto', nacimiento: '21/10/1985'}
-2: {nombre: 'Gabriela', apellido: 'Perez', nacimiento: '02/02/2010'}
-3: {nombre: 'Agustina', apellido: 'Estevez', nacimiento: '21/08/1986'}
-4: {nombre: 'Paola', apellido: 'Serra', nacimiento: '22/09/2009'}
-5: {nombre: 'Juan', apellido: 'Coprez', nacimiento: '12/04/1977'} */
+0: {nombre: 'Pedro', apellido: 'Gomez', nacimiento: '11/05/1985'}       // 39
+1: {nombre: 'Joaquin', apellido: 'Sotto', nacimiento: '21/10/1985'}     // 39
+2: {nombre: 'Gabriela', apellido: 'Perez', nacimiento: '02/02/2010'}    // 14
+3: {nombre: 'Agustina', apellido: 'Estevez', nacimiento: '21/08/1986'}  // 38
+4: {nombre: 'Paola', apellido: 'Serra', nacimiento: '22/09/2009'}       // 15
+5: {nombre: 'Juan', apellido: 'Coprez', nacimiento: '12/04/1977'}       // 47   */
 
-const fechaNacimiento = objeto[1].nacimiento
-const añoActual = new Date().getFullYear();
 
-fecha
-
-const añoNacimiento = new Date(`'${fechaNacimiento}'`);
-
-console.log(fechaNacimiento);
-
-// console.log(añoNacimiento);
-
-// lista.filter().map()
-// const personasMayores = objeto
-//   .filter(persona => {
-//     const fechaNacimiento = new Date(persona.nacimiento).getFullYear();
-//     const edad = new Date().getFullYear() - fechaNacimiento;
-//     return edad > 18;
-//   })
-//   .map(persona => {
-//     const fechaNacimiento = new Date(persona.nacimiento);
-//     const edad = new Date().getFullYear() - fechaNacimiento.getFullYear();
-//     return {
-//       nombre: persona.nombre,
-//       apellido: persona.apellido,
-//       edad: edad
-//     };
-//   });
-
+function calcularEdad(fechaNacimiento) {
+    const añoNacimiento = parseInt(fechaNacimiento[2]);
+    const añoActual = new Date().getFullYear();
+    return añoActual - añoNacimiento;
+}
+  
+const personasMayores = objeto
+    .filter(persona => calcularEdad(persona.nacimiento.split('/')) > 18)
+    .map(persona => {
+        const edad = calcularEdad(persona.nacimiento.split('/'));
+        return {
+            nombre: persona.nombre,
+            apellido: persona.apellido,
+            edad: edad
+        };
+});
  
 // 3. Este array debe decir la edad de la persona
-// console.log(personasMayores);
- /*
+console.log(personasMayores);
+
 // 4. Volver a guardar en localStorage bajo el mismo key
 localStorage.setItem('LISTADO', JSON.stringify(personasMayores));
 
 // 5. Mostrar por consola el resultado, asegurándose de que sea el requerido
-console.log(localStorage.getItem('LISTADO'));*/
+console.log(localStorage.getItem('LISTADO'));
