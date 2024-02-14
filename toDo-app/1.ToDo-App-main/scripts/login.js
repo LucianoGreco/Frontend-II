@@ -68,3 +68,10 @@ window.addEventListener('load', function () {
 
 
 });
+
+/*
+Documentación:  https://todo-api.ctd.academy/#/
+                    Api: https://todo-api.ctd.academy/v1
+
+                https://todo-api.ctd.academy:3000/#/
+                    ApiPremiun: https://todo-api.ctd.academy:3000/v1 */
