@@ -30,9 +30,7 @@ lECTURA:
 
 
 
-const URL_BASE = 'https://jsonplaceholder.typicode.com';
-
-// Se ejecutan el hilo principal y despues las promesas
+//const URL_BASE = 'https://jsonplaceholder.typicode.com';
 
 // OPCION 1 - EJECUCION ASINCRONICA: flujo de ejecucion en paralelo o en un orden diferente
 function llamarApi(usuario){
@@ -69,22 +67,23 @@ async function llamarApiConAwait(usuario){
     const respuesta = await fetch(`${URL_BASE}/posts`, configuraciones);
     const respuestaJson = await respuesta.json();
     console.log(respuestaJson);
-}
+} 
 
 // Ejecución CONCURRENTE ASINCRONIC: Tareas se ejecutan en paralelo pero finalizan en orden 
 // Ejecución CONCURRENTE SINCRONICA: Tareas se ejecutan en paralelo pero pueden finalizan en diferente orden
 
 
-const usuario = {
-    nombre : 'Luciano',
-    ciudad: 'San Rafael'
-}
+// const usuario = {
+//     nombre : 'Luciano',
+//     ciudad: 'San Rafael'
+// }
 
 const boton = document.querySelector('button');
 
 boton.addEventListener('click', function(){
     // llamarApi(usuario)
     // llamarApiConAwait(usuario)
+    llamarTodoApi(usuario)
 })
 
 
@@ -96,22 +95,40 @@ boton.addEventListener('click', function(){
     Este proceso puede realizarse a travez de la herramienta postman, o si ya lo prefieren 
         desde un script.
 
-Documentación: https://todo-api.ctd.academy/#/ */ 
+Documentación:  https://todo-api.ctd.academy/#/
+                    Api: https://todo-api.ctd.academy/v1
+
+                https://todo-api.ctd.academy:3000/#/
+                    ApiPremiun: https://todo-api.ctd.academy:3000/v1
+*/ 
+
+const URL_API = 'https://todo-api.ctd.academy/v1'
 
 
 // Awai
-function llamarTodoApi(){
-    
+async function llamarTodoApi(usuario){
+    const configuraciones = {
+        method: 'POST', // Metodo Post
+        body: JSON.stringify(usuario), // transformamos el objeto usuario a un json
+        headers: {  // Headers: espera un texto plano
+            'Content-Type':'application/json' // Debemos indicarle que espere un JSON
+        }
+    };
+
+//  const respuesta = await (Lo mismo que la funcion llamar api)
+    const respuesta = await fetch(`${URL_APIPruba}/users`, configuraciones);
+    const respuestaJson = await respuesta.json();
+    console.log(respuestaJson);
 }
 
 
+const usuario = {
+    firstName: "Luciano",
+    lastName: "Greco",
+    email: "grecolucianogabriel@gmail.com",
+    password: "123456789"
+  }
 
-
-
-
-
-
-
-
+//token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWNvbHVjaWFub2dhYnJpZWxAZ21haWwuY29tIiwiaWQiOjIyLCJpYXQiOjE3MDc5MjU5NjR9.qV-VXNZJY5G--Yky3cKUNz_gpmHRWvZGtcV-5L9uqz0"
 
 
