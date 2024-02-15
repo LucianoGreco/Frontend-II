@@ -108,7 +108,7 @@ const URL_API = 'https://todo-api.ctd.academy/v1'
 // Awai
 async function llamarTodoApi(usuario){
     const configuraciones = {
-        method: 'POST', // Metodo Post
+        method: 'POST', // Metodo Post - Request
         body: JSON.stringify(usuario), // transformamos el objeto usuario a un json
         headers: {  // Headers: espera un texto plano
             'Content-Type':'application/json' // Debemos indicarle que espere un JSON
