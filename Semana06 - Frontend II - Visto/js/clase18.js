@@ -99,8 +99,7 @@ Documentación:  https://todo-api.ctd.academy/#/
                     Api: https://todo-api.ctd.academy/v1
 
                 https://todo-api.ctd.academy:3000/#/
-                    ApiPremiun: https://todo-api.ctd.academy:3000/v1
-*/ 
+                    ApiPremiun: https://todo-api.ctd.academy:3000/v1 */ 
 
 const URL_API = 'https://todo-api.ctd.academy/v1'
 
@@ -127,7 +126,7 @@ const usuario = {
     lastName: "Greco",
     email: "grecolucianogabriel@gmail.com",
     password: "123456789"
-  }
+}
 
 //token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyZWNvbHVjaWFub2dhYnJpZWxAZ21haWwuY29tIiwiaWQiOjIyLCJpYXQiOjE3MDc5MjU5NjR9.qV-VXNZJY5G--Yky3cKUNz_gpmHRWvZGtcV-5L9uqz0"
 
