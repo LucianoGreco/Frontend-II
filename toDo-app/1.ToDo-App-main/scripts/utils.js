@@ -46,4 +46,16 @@ function mostrarMensajeError(mensaje){
 function mostrarMensaje(){
 
 }
+
+
+function bloqueadorCaracter(elemento, caracteres){
+    elemento.addEventListener('keypress', (e) => {        
+        // keypress: captura el caracter que se presiona
+        if(caracteres.includes(e.key)){
+            // Prevenimos la continuacion del evento y no se escribe la tecla oprimida
+            e.preventDefault();
+        }
+    })
+}
+
 //01:04:58 - 01:08:37

@@ -11,56 +11,61 @@ window.addEventListener('load', function () {
     const ULR_BASE = 'https://todo-api.ctd.academy/v1';
 
 
+    const firstName         = document.querySelector('#inputNombre');
+    const lastName          = document.querySelector('#inputApellido');
+    const email             = document.querySelector('#inputEmail');
+    const password          =  document.querySelector('#inputPassword');
+    const passwordRepetido  = document.querySelector('#inputPasswordRepetida');
+    const formulario        = document.querySelector('form');
+
     /* -------------------------------------------------------------------------- */
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
-    const formulario = document.querySelector('form');
-
     formulario.addEventListener('submit', function (e) {
 
         e.preventDefault();
 
         let usuario = {
-            firstName : document.querySelector('#inputNombre').value,
-            lastName :  document.querySelector('#inputApellido').value,
-            email :     document.querySelector('#inputEmail').value,
-            password :  document.querySelector('#inputPassword').value
+            firstName : firstName.value,
+            lastName :  lastName.value,
+            email :     email.value,
+            password :  password.value
         }
+
         console.log(usuario);
 
-        const passwordRepetido = document.querySelector('#inputPasswordRepetida').value;
-
+        
         // Validar todos los datos antes de llamar a la API
         let validacionFirstName             = validarTexto(usuario.firstName); // true
         let validacionlastName              = validarTexto(usuario.lastName); // true
         let validacionEmail                 = validarEmail(usuario.email); // true
         let validacionPassword              = validarContrasenia(usuario.password); // true
-        let validacionComparacionPassword   = compararContrasenias(usuario.password, passwordRepetido)
-
-        // console.log(validacionFirstName);
-        // console.log(validacionlastName);
-        // console.log(validacionEmail);
-        // console.log(validacionPassword);
-        // console.log(validacionComparacionPassword);
-        
+        let validacionComparacionPassword   = compararContrasenias(usuario.password, passwordRepetido.value)
 
         if(validacionFirstName && validacionlastName && validacionEmail && validacionPassword && validacionComparacionPassword){
             // realizarRegister(usuario)
-            // redirigir a login en caso de exito
             realizarRegister(usuario)
+            // redirigir a login en caso de exito
             window.location.href='index.html';
         }else{
             console.log('ERROR');
-        }
-        })
+        }     
 
+    })
 
-
+        
+    const caractersInvalidosEmail = '!"#$%&()*+,-./:;<=>?[]^_`{|}~';
+    const caractersInvalidosTexto = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~1234567890';
+    bloqueadorCaracter(email, caractersInvalidosEmail)
+    bloqueadorCaracter(firstName, caractersInvalidosTexto)
+    bloqueadorCaracter(lastName, caractersInvalidosTexto)
+    
+             
 
     /* -------------------------------------------------------------------------- */
     /*                     FUNCIÓN 2: Realizar el signup [POST]                   */
     /* -------------------------------------------------------------------------- */
-    function realizarRegister(usuario) {
+    async function realizarRegister(usuario) {
 
         const configuraciones = {
             method: 'POST', 
@@ -70,8 +75,12 @@ window.addEventListener('load', function () {
             }
         };
 
-        fetch(`${ULR_BASE}/users`, configuraciones)
-            .then(respuesta => respuesta.json())
-                .then(respuestaJson => console.log(respuestaJson));
+        // fetch(`${ULR_BASE}/users`, configuraciones)
+        //     .then(respuesta => respuesta.json())
+        //         .then(respuestaJson => console.log(respuestaJson));
+        const respuesta = await fetch(`${ULR_BASE}/users`, configuraciones)
+        const respuestaJson = await respuesta.json();
+        console.log(respuestaJson);
     };
+
 });
