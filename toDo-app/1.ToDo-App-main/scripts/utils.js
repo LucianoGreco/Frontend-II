@@ -1,47 +1,49 @@
-// /* ---------------------------------- texto --------------------------------- */
-// function validarTexto(texto) {
+/* ---------------------------------- texto --------------------------------- */
+function validarTexto(texto) {
+
+    if(typeof texto === 'string' && texto.length > 3){
+        return true
+    }else{
+        return false
+    }
+}
+
+function normalizarTexto(texto) {
     
-// }
+}
 
-// function normalizarTexto(texto) {
+
+/* ---------------------------------- email --------------------------------- */
+function validarEmail(email) {
+
+    let patronDeBusqueda = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
+    return patronDeBusqueda.test(email);
+}
+
+function normalizarEmail(email) {
     
-// }
+}
 
 
-// /* let usuario = {
-//     firstName : document.querySelector('#inputNombre').value, 
-//     lastName : document.querySelector('#inputApellido').value,
-//     email : document.querySelector('#inputEmail').value,
-//     password : document.querySelector('#inputPassword').value,
-//     role: 'admin'
-// }; */
+/* -------------------------------- password -------------------------------- */
+function validarContrasenia(contrasenia) {
+    return contrasenia.length > 3;
+}
+
+function compararContrasenias(contrasenia_1, contrasenia_2) {
+    if(contrasenia_1 === contrasenia_2){
+        return true
+    }else{
+        return false
+    }
+}
 
 
-// /* ---------------------------------- email --------------------------------- */
-// function validarEmail(email) {
-//     if(email ){
+function mostrarMensajeError(mensaje){
 
-//     }
-// }
+}
 
-// function normalizarEmail(email) {
-    
-// }
+function mostrarMensaje(){
 
-// /* -------------------------------- password -------------------------------- */
-// function validarContrasenia(contrasenia) {
-    
-// }
-
-// function compararContrasenias(contrasenia_1, contrasenia_2) {
-    
-// }
-
-// function mostrarMensajeError(mensaje){
-
-// }
-
-// function mostrarMensaje(){
-
-// }
-// //01:04:58 - 01:08:37
+}
+//01:04:58 - 01:08:37

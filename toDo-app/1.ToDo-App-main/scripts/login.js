@@ -13,7 +13,6 @@ window.addEventListener('load', function () {
 
 
 
-   
 
     });
 
@@ -28,9 +27,6 @@ window.addEventListener('load', function () {
 
 
     }
-
-
-
 });
 
 
@@ -43,7 +39,7 @@ Api: retornan informacion (json)
                     /
                         search --------------------- Hasta aqui forma parte de la URL
                                 ? ------------------ Desde aqui forma parte de la queri
-                                    q
+                                    q -------------- querie
                                         =
                                             casa
 
@@ -74,8 +70,8 @@ MINUTO: 32:46 / 01:08:37
 
 
 
-/*
-Documentación:  https://todo-api.ctd.academy/#/
+
+/* Documentación:  https://todo-api.ctd.academy/#/
                     Api: https://todo-api.ctd.academy/v1
 
                 https://todo-api.ctd.academy:3000/#/
