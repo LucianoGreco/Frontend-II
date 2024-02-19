@@ -1,6 +1,5 @@
 /* ---------------------------------- texto --------------------------------- */
 function validarTexto(texto) {
-
     if(typeof texto === 'string' && texto.length > 3){
         return true
     }else{
@@ -15,7 +14,6 @@ function normalizarTexto(texto) {
 
 /* ---------------------------------- email --------------------------------- */
 function validarEmail(email) {
-
     let patronDeBusqueda = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
     return patronDeBusqueda.test(email);
 }
