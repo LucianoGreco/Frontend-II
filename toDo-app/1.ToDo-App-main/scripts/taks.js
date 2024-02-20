@@ -11,14 +11,13 @@ window.addEventListener('load', function () {
 
   const ULR_BASE = 'https://todo-api.ctd.academy/v1';
   const btnCerrarSesion = document.querySelector('#closeApp');
-
-
+  const formCrearTarea = document.querySelector('form');
 
   obtenerNombreUsuario();
 
 
   /* -------------------------------------------------------------------------- */
-  /*                          FUNCIÓN 1 - Cerrar sesión                         */
+  /*                 ✅ FUNCIÓN 1 - Cerrar sesión                              */
   /* -------------------------------------------------------------------------- */
   btnCerrarSesion.addEventListener('click', function () {
 
@@ -31,9 +30,8 @@ window.addEventListener('load', function () {
   });
 
 
-
   /* -------------------------------------------------------------------------- */
-  /*                 FUNCIÓN 2 - Obtener nombre de usuario [GET]                */
+  /*                 ✅ FUNCIÓN 2 - Obtener nombre de usuario [GET]            */
   /* -------------------------------------------------------------------------- */
   function obtenerNombreUsuario() {
   
@@ -60,54 +58,65 @@ window.addEventListener('load', function () {
   }
 
 
-
   /* -------------------------------------------------------------------------- */
   /*                 FUNCIÓN 3 - Obtener listado de tareas [GET]                */
   /* -------------------------------------------------------------------------- */
   function consultarTareas() {
    
+    // Obtiene las tareas 
+    // a esta funcion la llamamos en el load
+
   };
 
 
+  /* -------------------------------------------------------------------------- */
+  /*                 ✅  FUNCIÓN 4 - Crear nueva tarea [POST]                  */
+  /* -------------------------------------------------------------------------- */
+  formCrearTarea.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // capturamos la exprecion del input nueva tarea
+    const nuevaTarea = document.querySelector('#nuevaTarea').value;
+    crearTarea(nuevaTarea);
+
+  })
+
+
+  function crearTarea(nuevaTarea){
+
+    const tarea = {
+        description: nuevaTarea,
+        completed: false
+    }
+
+    const jwt = JSON.parse(localStorage.getItem('jwt')) // token
+
+    const configuracion = {
+        method: 'POST', 
+        headers:{ 
+            'Content-Type':'application/json', 
+            'Authorization': jwt
+        },
+        body: JSON.stringify(tarea), 
+    };
+
+    fetch(`${ULR_BASE}/tasks`, configuracion)
+        .then(respuesta => respuesta.json())
+            .then(datos => console.log(datos));
+
+  }
+
 
   /* -------------------------------------------------------------------------- */
-  /*                    FUNCIÓN 4 - Crear nueva tarea [POST]                    */
-  /* -------------------------------------------------------------------------- */
-  // formCrearTarea.addEventListener('submit', function (event) {
-  //   event.preventDefault();
-    
-  // })
-
-  // function crearTarea(descripcionTarea){
-
-  //   const tarea = {
-  //       description: descripcionTarea,
-  //       completed: false
-  //   }
-
-  //   const jwt = JSON.parse(localStorage.getItem('jwt'))
-
-  //   const configuracion = {
-  //       method: 'POST', 
-  //       headers:{ 
-  //           'Content-Type':'application/json', 
-  //           'Authorizacion': jwt
-  //       },
-  //       body: JSON.stringify(tarea), 
-  //   };
-
-  //   fetch(`${ULR_BASE}/tasks`, configuracion)
-  //       .then(respuesta => respuesta.json())
-  //           .then(datos => console.log(datos));
-
-  // }
-
-
-  /* -------------------------------------------------------------------------- */
-  /*                  FUNCIÓN 5 - Renderizar tareas en pantalla                 */
+  /*               🚧 FUNCIÓN 5 - Renderizar tareas en pantalla                 */
   /* -------------------------------------------------------------------------- */
   function renderizarTareas(listado) {
 
+
+
+    // <ul class="tareas-pendientes">
+
+    // <ul class="tareas-terminadas">
   }
 
 

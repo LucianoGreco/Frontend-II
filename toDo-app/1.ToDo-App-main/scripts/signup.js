@@ -49,13 +49,10 @@ window.addEventListener('load', function () {
         }else{
             // console.log('ERROR');
         }
-        
         form.reset(); // limpio los campos del formulario
-
     })
         
              
-
     /* -------------------------------------------------------------------------- */
     /*                     FUNCIÓN 2: Realizar el signup [POST]                   */
     /* -------------------------------------------------------------------------- */
@@ -82,7 +79,7 @@ window.addEventListener('load', function () {
                 return response.json()
             })
             .then(data => {
-                // console.log('Promesa signup aceptada');
+                console.log('Promesa signup aceptada');
                 // console.log(data) // token {jwt:"eyJhbGciOiJI"}
                 // console.log(data.jwt); //        eyJhbGciOiJI
 
