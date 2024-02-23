@@ -157,6 +157,12 @@ main h2 {
 
 /* ------------Tareas terminadas */
 #cantidad-finalizadas {
+    background-color: var(--red);
+    border-radius: 50vh;
+    padding: .1rem .5rem;
+}
+
+#cantidad-pendientes {
     background-color: var(--verde);
     border-radius: 50vh;
     padding: .1rem .5rem;

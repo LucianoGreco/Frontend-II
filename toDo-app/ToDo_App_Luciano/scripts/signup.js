@@ -22,8 +22,6 @@ window.addEventListener('load', function () {
     bloqueadorCaracter(nombre, caractersInvalidosTexto)
     bloqueadorCaracter(apellido, caractersInvalidosTexto)
 
-    
-        
 
     /* -------------------------------------------------------------------------- */
     /*  ✅ FUNCIÓN 1 - Escuchamos el submit y preparamos el envío                 */

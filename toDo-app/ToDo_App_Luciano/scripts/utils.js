@@ -7,18 +7,18 @@ function validarTexto(texto) {
     }
 }
 
-function normalizarTexto(texto) {
+// function normalizarTexto(texto) {
     
-    // Convertir todo a minúsculas
-    let minuscula = texto.toLowerCase();
-    // // Eliminar caracteres especiales y puntuación
-    let replace = minuscula.replace(/[^\w\s]/g, '');
+//     // Convertir todo a minúsculas
+//     let minuscula = texto.toLowerCase();
+//     // // Eliminar caracteres especiales y puntuación
+//     let replace = minuscula.replace(/[^\w\s]/g, '');
 
-    // // Eliminar espacios adicionales
-    let trim = replace.replace(/\s+/g, ' ').trim();
+//     // // Eliminar espacios adicionales
+//     let trim = replace.replace(/\s+/g, ' ').trim();
     
-    return trim;
-}
+//     return trim;
+// }
 
 
 /* ---------------------------------- email --------------------------------- */
@@ -27,7 +27,7 @@ function validarEmail(email) {
     return patronDeBusqueda.test(email);
 }
 
-function normalizarEmail(email) {
+function normalizarEmail() {
     
 }
 

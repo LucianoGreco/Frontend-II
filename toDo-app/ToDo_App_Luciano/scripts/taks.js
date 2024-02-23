@@ -1,6 +1,7 @@
 
 // SEGURIDAD: Si no se encuentra en localStorage info del usuario
 // no lo deja acceder a la página, redirigiendo al login inmediatamente.
+
 if (!localStorage.jwt) {
   location.replace('./index.html');
 }
@@ -114,9 +115,10 @@ window.addEventListener('load', function () {
       .then(response => response.json())
         .then(tareas => {
           console.table(tareas);
+
           renderizarTareas(tareas); // 1° renderiza
           botonesCambioEstado(); // 2° Cambia el estado
-          botonBorrarTarea()
+          botonBorrarTarea() // 3° Borrar tarea
         })
         .catch(error => console.log(error));
 
@@ -139,7 +141,10 @@ window.addEventListener('load', function () {
 
     // #6 Renderiza las tareas finalizadas
     const numeroFinalizadas = document.querySelector('#cantidad-finalizadas');
-    let contador = 0;
+
+    const numeroPendientes = document.querySelector('#cantidad-pendientes');
+    let contadorFinalizadas = 0;
+    let contadorPendientes = 0;
 
         
 /*  const tarea = {
@@ -160,7 +165,7 @@ window.addEventListener('load', function () {
       
       // #2. Separa las tarea terminadas de las pendientes
       if(tarea.completed){
-        contador++; // #6 Suma al contador por cada tarea completada
+        contadorFinalizadas++; // #6 Suma al contador por cada tarea completada
 
         // #3. Si la tarea es completada la renderiza en tareas terminadas
         tareasTerminadas.innerHTML += `
@@ -168,6 +173,7 @@ window.addEventListener('load', function () {
             <div class="hecha">
               <i class="fa-regular fa-circle-check"></i>
             </div>
+            
             <div class="descripcion">
               <p class="nombre">${tarea.description}</p>
               <div class="cambios-estados">
@@ -179,10 +185,12 @@ window.addEventListener('load', function () {
         `
       }
       else{
+        contadorPendientes ++;
         // #4. Si la tarea es pendiente la renderiza en tareas pendiente
         tareasPendientes.innerHTML += `
           <li class="tarea">
             <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
+            
             <div class="descripcion">
               <p class="nombre">${tarea.description}</p>
               <p class="timestamp">${fecha.toLocaleDateString()}
@@ -191,7 +199,8 @@ window.addEventListener('load', function () {
         `
       }
       // #7. Seteamos el contador
-      numeroFinalizadas.innerText = contador;
+      numeroFinalizadas.innerText = contadorFinalizadas;
+      numeroPendientes.innerText = contadorPendientes;
     })
 
   }
@@ -210,15 +219,28 @@ window.addEventListener('load', function () {
         console.log('Cambiando estado de tarea...');
         console.log(event);
 
-        const id = event.target.id;
-        const url = `${urlTareas}/${id}`
-        const payload = {};
+        
 
+        // # OPCION 1
+        /* const tarea = {
+            completed: !event.target.classList.contains('incompleta')
+        }                                                             */
+
+
+        // # OPCION 2
+        /* const tarea = {};
         if(event.target.classList.contains('incompleta')){
-          payload.completed = false;
-        }else{
-          payload.completed = true;
-        }
+          tarea.completed = false;
+        } else{
+          tarea.completed = true;
+        }                                                   */
+
+        // # OPCION 3
+        const tarea = {}
+        tarea.completed = event.target.classList.contains('incompleta') ? false : true;
+
+
+
 
         const configuracion ={
           method: 'PUT',
@@ -226,8 +248,13 @@ window.addEventListener('load', function () {
             authorization: token,
             "Content-type": "application/json"
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(tarea)// payload
         }
+
+
+
+        const id = event.target.id;
+        const url = `${urlTareas}/${id}`
 
         fetch(url, configuracion)
           .then(response => {
